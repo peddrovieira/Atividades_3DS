@@ -1,0 +1,60 @@
+NOME: CAIO Q. DE ARAUJO 2DS 
+
+----------------------------------------
+ ATIVIDADE AVALIATIVA BANCO DE DADOS II
+----------------------------------------
+
+1 (Efetuar a criação de comandospara se consultar as situações descritas abaixo:)
+{ 
+	A (ExibirIdentificação (idAtivo)e   Descrição   do   Ativo(dsAtivo), Tipo 	(dsTipoAtivo),Área de Lotação (dsArea), Espaço de Lotação (dsEscaco)e o Nome do 	Responsável (nmResponsavel)dos Ativos que não constam em AtivoBaixado.) 
+	{
+		SELECT Ac.idAtivo, Ac.dsAtivo,Ta.dsTipoAtivo, A.dsArea, E.dsEspaco, R.nmResponsavel
+		FROM Ativo AS Ac
+		INNER JOIN  TipoAtivo AS Ta ON Ta.idTipoAtivo = Ac.idTipoAtrativo
+		INNER JOIN  Area AS A ON A.idArea = Ac.idArea
+		INNER JOIN  Espaco AS E ON E.idEspaco = Ac.idEspaco
+		INNER JOIN  Responsavel AS R ON R.idResponsavel = Ac.idResponsavel
+		WHERE 
+	}
+
+	B (Exibir a Área (dsArea), o Espaço (dsEspaco) e a quantidade de Ativos(Ativo) que possuem 	seu Status (dsStatusAtivo)como “Alocado”.)
+	{
+		SELECT A.dsArea, E.dsEspaco, COUNT(SELECT Ac.dsStatusAtivo 													FROM Ativo AS Ac 														WHERE Ac.dsStatusAtivo LIKE '%Alocado%')
+		FROM Ativo AS Ac
+		INNER JOIN  Area AS A ON A.idArea = Ac.idArea
+		INNER JOIN  Espaco AS E ON E.idEspaco = Ac.idEspaco
+	}
+
+	C (Alterar o status de um dado Ativo (idStatusAtivo)para “Baixado” para todos os Ativos 	(idAtivo) que constem na tabela AtivoBaixado.)
+	{
+		UPDATE Ativos SET (SELECT Ac.idStatusAtivo
+					FROM Ativos AS Ac
+					INNER JOIN StatusAtivo AS Sa ON Sa.idStatusAtivo = 								Ac.idStatusAtivo)
+		WHERE (SELECT idAtivo		
+	}
+
+	D (Exibir Identificação (idAtivo)e   Descrição   do   Ativo(dsAtivo), Tipo (dsTipoAtivo), 	Data  da  Baixa  (dtBaixa)e seu  Motivo (mtBaixa)dos Ativos foram baixados entre os anos 	2020, 2021 e 2022 ou que não geraram um valor (vlBaixa).)
+	{
+		SELECT idAtivo, dsAtivo, dsTipoAtivo, dtBaixa, mtBaixa
+		FROM Ativo AS Ac
+	}
+	E (Excluir todos os Espaços que não possuam um Ativo lotado.)
+	{
+		DELETE (SELECT * FROM 
+	}
+	F (Incluir  um  novo  responsável  com  suas  informações  pessoais,  atribuindo em 	idResponsavel o último +1 na Área (idArea)de “Informática”.)
+	{
+		INSERT Responsavel (SELECT ISNULL(MAX((SELECT A.idArea 
+					FROM Ativo AS Ac 
+					INNER JOIN Area AS A ON A.idArea = Ac.IdArea
+					WHERE dsArea = 'Informatica'  
+		)),0)+1,'Informatica') 
+		FROM Responsavel
+
+	}
+}
+2 (Dado o comando abaixo, o que acontecerá após a sua execução?)
+{
+	string resposta = "?";
+	printf(resposta);
+}

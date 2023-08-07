@@ -1,0 +1,19 @@
+1-SELECT au_fname +' '+ au_lname AS [Nome Completo], city +' '+ state AS Localidade FROM authors 
+WHERE state = 'MI' OR state = 'KS' OR state = 'UT'
+
+2-SELECT title_id AS [Código do Título], title AS [Nome do Título],UPPER(type) AS Tipo FROM titles WHERE pubdate > '1993-12-31'
+
+3-SELECT emp_id AS [Código do Empregado],STUFF(fname ,1 , 10,'********') + ' ' + minit + ' ' + lname AS[Nome do Empregado] 
+FROM employee WHERE hire_date >= '1991-12-01' AND hire_date <='1994-04-30'
+
+/*Não sabia se era o Nome Completo ou apenas o primeiro nome no STUFF */
+
+4- SELECT emp_id AS [Código do Empregado],STUFF(fname ,1 , 10,'********') + ' ' + minit + ' ' + lname AS[Nome do Empregado] 
+FROM employee WHERE minit = ''
+
+/*Não sabia se era o Nome Completo ou apenas o primeiro nome no STUFF */
+
+5- SELECT job_desc AS Cargo FROM jobs WHERE min_lvl >= '80' AND max_lvl <= '240'
+
+6 - SELECT title_id AS [Código do Título], title AS [Nome do Título], notes AS Notas, FORMAT ( pubdate,'d','en-gb')AS [Data de Edição]
+FROM titles WHERE price >='7.50' AND price <='12'

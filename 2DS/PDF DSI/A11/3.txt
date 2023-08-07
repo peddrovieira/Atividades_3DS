@@ -1,0 +1,8 @@
+  private async Task<bool> UsuarioExistente(string username)
+        {
+            if (await _context.Usuarios.AnyAsync(x => x.Username.ToLower() == username.ToLower()))
+            {
+                return true;
+            }
+            return false;
+        }

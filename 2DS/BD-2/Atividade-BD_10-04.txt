@@ -1,0 +1,93 @@
+/*
+Criar comando para exibir as informações de 
+Loja (stores) - stor_id, stor_name, city, state
+Títulos (titles) - title_id, title
+Vendas (sales) - ord_num, payterms
+Aonde :
+- Em que a ordem (ord_date) tenha sido realizada entre os dias 14 e 15
+OU
+- Em que a ordem (ord_date) tenha sido realizada no mês de Outubro (10)
+*/
+
+
+SELECT ST.stor_id,ST.stor_name, city, state,T.Title_id,T.title, S.ord_num,S.payterms 
+FROM stores AS ST 
+INNER JOIN sales AS S ON ST.stor_id = S.stor_id
+INNER JOIN titles AS T ON S.title_id = T.title_id
+WHERE (DAY(S.ord_date) BETWEEN 14 AND 15 ) OR (MONTH(S.ord_date) = 10) 
+
+
+
+/*
+Efetuar a criação de comando para exibição das informações
+- Títulos (titles) - título (title)
+- Vendas (sales) - Forma de Pagamento (payterms) e total de Quantidades (qty)
+O total de Quantidade deverá ser agrupado por título e forma de pagamento.
+A ordenação do resultado deverá ser baseada por título e forma de pagamento.
+*/
+
+SELECT T.title, S.payterms, SUM(S.qty) AS [Total de Quantidade]
+FROM titles AS T
+INNER JOIN sales AS S ON T.title_id = S.title_id
+GROUP BY T.title, S.payterms 
+ORDER BY T.title, S.payterms 
+
+
+
+
+/*
+Efetuar a criação o comando para exibir as informações 
+de Nome (fname e lname) e a sua identificação (job_id) com zeros a esquerda em 4 posições
+e o (emp_id) dos Empregados (tabela employee) que constam na base de Publicações (pubs)
+*/
+
+SELECT fname + ' ' + lname AS [Nome], RIGHT(REPLICATE('0',4)+LTRIM(job_id),5) AS [Identificação], 
+emp_id AS [Empregados] FROM employee 
+
+
+
+
+/*
+Efetuar a criação de comando para exibir as informações de:
+Títulos (titles) - title_id, title
+Autores (authors) - au_id, au_fname + au_lname
+Aonde:
+A data de publicação (pub_date) seja do ano de 1994 e tenha a palavra 'Guide" em seu título (title)
+OU
+O tipo (type) seja business ou mod_cook e o preço (price) esteja entre $10 e $25.
+*/
+
+SELECT T.title_id, T.title, A.au_id, A.au_fname + ' ' + A.au_lname
+FROM titles AS T
+INNER JOIN titleauthor AS TA ON T.title_id = TA.title_id
+INNER JOIN authors AS A ON TA.au_id = A.au_id
+WHERE ((YEAR(T.pubdate)=1994) AND T.title LIKE '%Guide%') 
+	OR ((T.type = 'business' OR T.type = 'mod_cook') AND (T.price BETWEEN 10 AND 25))  
+
+/*
+Efetuar a criação de comando para exibir as informações dos Títulos (titles),
+aonde teremos a quantidade de livros, a média de preço,
+a menor e a maior data de publicação agrupados por tipo (type).
+*/
+
+SELECT type, COUNT (*) AS [Quantidade de livros], 
+	AVG(ISNULL(price,' ')) AS [Média de preço], 
+	MIN(pubdate) AS [Menor data de publicação], 
+	MAX(pubdate) AS [Maior data de publicação]
+FROM titles
+GROUP BY type
+
+/*
+Efetuar a criação de comando para exibir as informações de Lojas e Vendas.
+Lojas - Nome da Loja (stor_name)
+Vendas - Tipo de Pagamento (payterms), Média de Quantidades (qty), Total de Quantidades (qty), Contagem de registros
+Agrupando por Nome da Loja e Tipo de Pagamento.
+*/
+
+ SELECT ST.stor_name AS [Nome da Loja], S.payterms AS [Tipo de Pagamento], 
+	AVG(ISNULL(S.qty,'')) AS [Média de Quantidade], 
+	SUM(S.qty) AS [Total de Quantidades],
+	COUNT(*)
+ FROM stores ST
+ INNER JOIN sales S ON  ST.stor_id = S.stor_id
+ GROUP BY stor_name,payterms

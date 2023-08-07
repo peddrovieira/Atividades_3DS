@@ -1,0 +1,94 @@
+/* 1º Exibir o Código (CustomerID), Nome (CompanyName), 
+*		Cidade (City) e país (Country) 
+*  dos Clientes (Customers) que não possuam nenhuma Ordem de Compra (Orders).
+* FISSA PARIS
+*/
+GO
+SELECT * FROM Customers
+ORDER BY CustomerID
+SELECT * FROM Orders
+ORDER BY CustomerID
+GO
+
+SELECT CustomerID AS [Código], CompanyName AS [Nome], City AS [Cidade], Country AS [País]
+FROM Customers 
+WHERE CustomerID NOT IN (SELECT CustomerID FROM Orders)
+
+/*
+*	2º  Exibir o  Código  (ProductID),  o  Nome  (ProductName),  as  informações  deCategoria  (Categories.CategoryID e Categories.CategoryName) 
+*	o   valor   emestoque   (UnitsInStock,   UnitPrice)e   o   valor   previsto   de   vendas (UnitsOnOrder,  UnitPrice)
+*	dos  Produtos  (Products) ativos(Discontinuedigual  a 0). 
+*	A  ordenação  do  resultado deve ser pelo nome da Categoria (Categories.CategoryName).
+*/
+
+SELECT * FROM Products
+SELECT * FROM Categories
+
+SELECT P.ProductID AS [Código], P.ProductName AS [Nome],LTRIM(STR(C.CategoryID) + '  ' + C.CategoryName)  AS [Informações de Categoria],
+LTRIM(STR(P.UnitsInStock)) + REPLICATE('  X  ',1) + LTRIM(STR(P.UnitPrice,10,2)) AS [Valor em estoque],LTRIM(STR(P.UnitsOnOrder)) +REPLICATE('  X  ',1)+LTRIM(P.UnitPrice) AS [Valor Previsto de Vendas]
+FROM Products P
+INNER JOIN Categories C ON P.CategoryID = C.CategoryID
+WHERE Discontinued = 0
+ORDER BY CategoryName
+
+/*	Exibir  o  numero  da  Ordem  (OrderID)e  a  quantidade  de  itens dos Detalhes Pedidos  (OrdersDetails) 
+*	que a Ordem  (Orders)tenha  sido  solicitada  (OrderDate) entre 01/01/2000  e  31/03/2000 
+*	e  a  quantidade  de itens seja maiorque 3.
+*/
+
+SELECT * FROM [Order Details]
+SELECT * FROM Orders
+
+SELECT OD.OrderID, COUNT(*) AS [Quantidade de Itens] 
+FROM [Order Details] OD
+INNER JOIN Orders O ON OD.OrderID = O.OrderID
+WHERE MONTH(O.OrderDate) > 01 AND MONTH(O.OrderDate) < 4  AND(OD.Quantity >3)
+GROUP BY OD.OrderID
+
+--BETWEEN '2000-01-01' AND '2000-03-31')
+
+
+
+
+/*
+*	Exibir os 15º primeiros  nomes do  Produto  (Products.ProductName)
+*	com  sua quantidade total  de  itens vendidos(OrdersDetailsQuantity).
+*/
+
+SELECT P.ProductName AS [Nome do Produto], SUM(OD.quantity) AS [Quantidade total de itens vendidos]
+FROM Products P
+INNER JOIN [Order Details] OD ON P.ProductID = OD.ProductID
+GROUP BY P.ProductName
+HAVING COUNT(*) <= 15
+
+/*
+Exibir  os  5º  primeiros  Clientes  (Customers.CompanyName) 
+em  volume  (Order  Details, Quantity* UnitPrice) com data de Requisição (Orders.RequiredDate) no ano de 1998.
+*/
+SELECT * FROM Customers
+
+SELECT TOP 5 C.CompanyName AS [Clientes] , SUM(OD.Quantity * OD.UnitPrice) AS [Total Volume]
+FROM Customers C
+INNER JOIN Orders O ON C.CustomerID = O.CustomerID
+INNER JOIN [Order Details] OD ON O.OrderID = OD.OrderID
+GROUP BY C.CompanyName, O.RequiredDate
+HAVING COUNT(*) <= 5 AND  YEAR(O.RequiredDate) = 1998
+GO
+
+SELECT c.CompanyName, SUM(od.Quantity * od.UnitPrice) AS TotalVolume
+FROM Customers c
+JOIN Orders AS o ON c.CustomerID = o.CustomerID
+JOIN [Order Details] od ON o.OrderID = od.OrderID
+WHERE YEAR(o.RequiredDate) = 1998
+GROUP BY c.CompanyName
+HAVING SUM(od.Quantity * od.UnitPrice) IN (
+    SELECT TOP 5 SUM(od.Quantity * od.UnitPrice)
+    FROM Customers c
+    JOIN Orders o ON c.CustomerID = o.CustomerID
+    JOIN [Order Details] od ON o.OrderID = od.OrderID
+    WHERE YEAR(o.RequiredDate) = 1998
+    GROUP BY c.CompanyName
+    ORDER BY SUM(od.Quantity * od.UnitPrice) DESC
+)
+ORDER BY TotalVolume DESC;
+

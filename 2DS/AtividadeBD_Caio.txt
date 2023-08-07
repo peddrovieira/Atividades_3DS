@@ -1,0 +1,93 @@
+/*Efetuar a criação de comando para exibição das informações
+- Empregados (employee) - Código (emp_id), Nome Completo(fname, minit e lname)
+- Cargos (jobs) - Código (job_id), Descrição (job_desc)
+- Editoras (publishers) - Código (pub_id), Nome (pub_name), Localização (city, state e country)
+Aonde o país (country) seja "France" ou o estado (state) seja (IL)inois ou (CA)lifornia para o país (country) "USA" */
+
+
+
+SELECT E.emp_id AS Código, 
+       E.fname + ' ' + E.minit + ' ' + E.lname AS [Nome Completo], 
+	   J.job_id AS Código, 
+	   J.job_desc AS Descrição, 
+	   P.pub_id AS Código, 
+	   P.pub_name AS Nome, 
+	   P.city + ' ' + isnull(P.state,'') + ' ' + P.country AS Localização
+FROM employee AS E
+INNER JOIN jobs AS J ON J.job_id = E.job_id
+INNER JOIN publishers AS P ON P.pub_id = E.pub_id
+WHERE P.country = 'France' OR ((P.state = 'IL' OR P.state = 'CA') AND P.country = 'USA')
+
+
+
+
+
+
+
+
+
+
+
+
+/*Efetuar a criação de comando para exibição das informações
+- Títulos (titles) - Identificação (title_id) , título (title)
+- Editoras (publishers) - Identificação (pub_id), Nome (pub_name), País (country)
+- Autores (authors) - Identificação (au_id), Nome (au_fname + au_lname)
+Aonde a categoria (type) seja "psychology" e o valor seja inferior a $12,00 */
+
+
+
+SELECT T.title_id AS Identificação,
+		T.title AS Título,
+		P.pub_id AS Identificação,
+		P.pub_name AS Nome,
+		P.country AS País,
+		A.au_id AS Identificação,
+		A.au_fname + ' ' + A.au_lname AS Nome
+FROM titles AS T
+INNER JOIN titleauthor AS TA ON TA.title_id = T.title_id
+INNER JOIN publishers AS P ON P.pub_id = T.pub_id
+INNER JOIN authors AS A ON A.au_id = TA.au_id
+WHERE type = 'psychology' AND T.price < 12
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Efetuar a criação de comando para exibição das informações
+- Lojas (stores) - Identificação (stor_id) , Nome (stor_name), Localidade (city + state)
+- Títulos (titles) - Identificação (title_id) , título (title)
+- Editoras (publishers) - Identificação (pub_id), Nome (pub_name), País (country)
+- Vendas (sales) - Ordem (ord_num), Momento (ord_date), Quantidade (qty)
+Aonde a forma de pagamento (payterms) seja "ON invoice".
+A ordenação do resultado deverá ser baseada no Momento (ord_date) decrescente*/
+
+
+
+SELECT L.stor_id AS Identificação,
+		L.stor_name AS Nome,
+		L.city + ' ' + L.state AS Localidade,
+		T.title_id AS Identificação,
+		T.title AS Título,
+		E.pub_id AS Identificação,
+		E.pub_name AS Nome,
+		E.country AS País,
+		V.ord_num AS Ordem,
+		V.ord_date AS Momento,
+		V.qty AS Quantidade
+FROM publishers AS E
+INNER JOIN titles AS T ON T.pub_id = E.pub_id
+INNER JOIN sales AS V ON V.title_id = T.title_id 
+INNER JOIN stores AS L ON L.stor_id = V.stor_id
+WHERE payterms = 'ON invoice' 
+ORDER BY ord_date DESC

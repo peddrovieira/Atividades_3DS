@@ -1,0 +1,21 @@
+Comando pra versionar para o git local:
+
+	git init
+
+Comando para adicionar todos os arquivos:
+
+	git add .
+
+Comando para comitar:
+
+	git commit -m "Descrição do commit"
+
+Os 3 comandos sagrados para subir:
+
+	git remote add origin <caminho do repositorio>
+	git branch -M main
+	git push -u origin main
+
+Comando para tirar um caminho de repositorio pré-existente:
+
+	git remote rm origin

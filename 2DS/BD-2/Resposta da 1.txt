@@ -1,0 +1,135 @@
+/*
+1º Criação dos comandos DDL para a criação de todas as estruturas (Tabelas, PKs e FKs);
+*/
+
+CREATE TABLE products
+(
+product_id INT NOT NULL,
+product_name VARCHAR(255) NOT NULL,
+category_id INT NOT NULL,
+brand_id INT NOT NULL,
+model_year SMALLINT NOT NULL,
+list_price DECIMAL (10,2) NOT NULL
+)
+
+ALTER TABLE products ADD CONSTRAINT PRODUCT_PK PRIMARY KEY (product_id)
+
+
+
+CREATE TABLE stores
+(
+store_id INT NOT NULL,
+store_name VARCHAR(255) NOT NULL,
+phone VARCHAR(25) NOT NULL,
+email VARCHAR(255) NOT NULL,
+street VARCHAR(255) NOT NULL,
+city VARCHAR(255) NOT NULL,
+state VARCHAR(10) NOT NULL,
+zip_code VARCHAR(5) NOT NULL
+)
+
+ALTER TABLE stores ADD CONSTRAINT STORES_PK PRIMARY KEY (store_id)
+
+
+CREATE TABLE staffs
+(
+staff_id INT NOT NULL,
+first_name VARCHAR(50),
+last_name VARCHAR(50),
+email VARCHAR(255) NOT NULL,
+phone VARCHAR(25) NOT NULL,
+active TINYINT NOT NULL,
+store_id INT NOT NULL,
+manager_id INT NOT NULL
+)
+
+ALTER TABLE staffs ADD CONSTRAINT STAFFS_PK PRIMARY KEY (staff_id)
+
+
+CREATE TABLE orders
+(
+order_id INT NOT NULL,
+customer_id INT NOT NULL,
+order_status TINYINT NOT NULL,
+order_date DATE NOT NULL,
+required_date DATE NOT NULL,
+shipped_date DATE NOT NULL,
+store_id INT NOT NULL,
+staff_id INT NOT NULL
+)
+
+ALTER TABLE orders ADD CONSTRAINT ORDERS_PK PRIMARY KEY (order_id)
+
+CREATE TABLE customers
+(
+customer_id INT NOT NULL,
+first_name VARCHAR(255),
+last_name VARCHAR(255),
+phone VARCHAR(25) NOT NULL,
+email VARCHAR(255) NOT NULL,
+street VARCHAR(255) NOT NULL,
+city VARCHAR(50) NOT NULL,
+state VARCHAR(25) NOT NULL,
+zip_code VARCHAR(5) NOT NULL
+)
+
+ALTER TABLE customers ADD CONSTRAINT CUSTOMERS_PK PRIMARY KEY (customer_id)
+
+
+CREATE TABLE order_items
+(
+order_id INT NOT NULL,
+item_id INT NOT NULL,
+product_id INT NOT NULL,
+quantity INT NOT NULL,
+list_price DECIMAL (10,2) NOT NULL,
+discount DECIMAL(4,2) NOT NULL
+)
+
+ALTER TABLE order_items ADD CONSTRAINT ORDERIT_PK1 PRIMARY KEY (order_id,item_id)
+
+
+CREATE TABLE stocks
+(
+product_id INT NOT NULL,
+store_id INT NOT NULL,
+quantity INT NOT NULL
+)
+
+ALTER TABLE stocks ADD CONSTRAINT STOCKS_PK PRIMARY KEY (product_id , store_id)
+
+
+CREATE TABLE brands
+(
+brand_id INT NOT NULL,
+brand_name VARCHAR(255) NOT NULL
+)
+
+ALTER TABLE brands ADD CONSTRAINT BRAND_PK PRIMARY KEY (brand_id)
+
+
+
+CREATE TABLE categories
+(
+category_id INT NOT NULL,
+category_name VARCHAR(255) NOT NULL
+)
+
+ALTER TABLE categories ADD CONSTRAINT CATEGORIES_PK PRIMARY KEY (category_id)
+
+
+ALTER TABLE products ADD CONSTRAINT PRODUCTS_FK01 FOREIGN KEY (category_id) REFERENCES categories (category_id)
+ALTER TABLE products ADD CONSTRAINT PRODUCTS_FK02 FOREIGN KEY (brand_id) REFERENCES brands (brand_id)
+
+ALTER TABLE stocks ADD CONSTRAINT STOCKS_FK01 FOREIGN KEY (product_id) REFERENCES products (product_id)
+ALTER TABLE stocks ADD CONSTRAINT STOCKS_FK02 FOREIGN KEY (store_id) REFERENCES stores (store_id)
+
+ALTER TABLE staffs ADD CONSTRAINT STAFFS_FK01 FOREIGN KEY (store_id) REFERENCES stores (store_id)
+
+ALTER TABLE orders ADD CONSTRAINT ORDERS_FK01 FOREIGN KEY (customer_id) REFERENCES customers (customer_id)
+ALTER TABLE orders ADD CONSTRAINT ORDERS_FK02 FOREIGN KEY (store_id) REFERENCES stores (store_id)
+
+
+ALTER TABLE order_items ADD CONSTRAINT ORDERIT_FK01 FOREIGN KEY (product_id) REFERENCES products (product_id)
+ALTER TABLE order_items ADD CONSTRAINT ORDERIT_FK02 FOREIGN KEY (order_id) REFERENCES orders (order_id)
+

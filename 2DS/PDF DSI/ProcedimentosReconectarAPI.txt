@@ -1,0 +1,38 @@
+- Abrir Projeto no VS Code e compilar para se isentar de erros
+
+- Verificar se a classe Program.cs está apontando para a string de conexão local
+
+- Iniciar o serviço SQL no Windows --> Iniciar --> Services --> SQLSERVER (MSSQLSERVER) --> Clicar com direito --> Iniciar
+
+- Executar comando para executar as migrações no banco: dotnet ef database update
+
+- Abrir o SQL para confirmar que o banco foi criado.
+
+- Verificar os dois endpoints de testes
+	1. http://localhost:xyz/WeatherForecast
+	2. http://localhost:5164/Personagens/GetAll
+
+	* xyz --> número da porta da sua API
+
+
+
+
+Em caso de erro referente de cache do .net70, rodar o comando: 
+	
+- dotnet nuget locals all --clear
+
+
+
+Em caso de falta dos pacotes de mapeamento e criação do banco de dados:
+
+- Instalar os pacotes referentes ao Entity Framework:
+
+	1. dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+	2. dotnet tool install --global dotnet-ef
+	3. dotnet add package Microsoft.EntityFrameworkCore.Design
+
+- Executar comando para executar as migrações no banco: dotnet ef database update
+
+- Tipos de String de conexão:
+Laboratório --> "ConexaoLocal":"Data Source=localhost; Initial Catalog=DB-DS-DS_2022_2; User Id=sa; Password=123456"
+Casa (caso seja Windows Autentication) --> "ConexaoLocalWindowsAutentication":"Data Source=.\\MSSQLSERVER; Initial Catalog=DB-DS-NOMEBANCO;Integrated Security=True;"
