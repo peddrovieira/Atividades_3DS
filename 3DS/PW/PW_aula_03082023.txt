@@ -1,0 +1,29 @@
+-----------------------------------------------------------------------------------------------
+JAVA
+-----------------------------------------------------------------------------------------------
+
+Caminho do WorkSpace: c:\arquivos\eclipse-workspace
+
+Criação de projeto Eclipe(Java) = File > New > Other OR Ctrl + N
+
+Configurar a IDE: Window > Show View > Other OR Alt + Shift + Q, Q OR F11
+
+Run no projeto: botão verde de play > Run As > Java Application OR Alt + Shift+ X, J
+
+Package: br.com.horacio.teste
+Nome da CLasse: Teste
+Marcar public static void main(String[] args)
+
+A diferença de println e print: ln é line ou seja quando você esta escrevendo println é apenas em uma linha. Se voce escrever apenas print, os outros prints serão na msm linha que o print.
+
+"sysou" + Ctrl + Space = System.out.println();
+
+Ctrl + Shift + F = identação(organizar as linhas)
+
+Importar projeto da Workspace(para aparecer no Package Explorer): File > Import > General > Existing Projects into Workspace
+
+Float arredonda o valor essa é a diferença entre ele e o Double
+
+Integer.parseInt(); = converte string para int(se a string for um numero)
+
+Ler valor = JOptionPane.showInputDialog();
