@@ -1,0 +1,41 @@
+Lista de Exercícios - Ambiguidade
+
+1) Ambiguidade para mim é palavras que com a existência de vários sentidos 
+
+2) Ambiguidade lexical / Ambiguidade sintática
+
+a) O menino pode estar vendo o incêndio de seu prédio ou de outro prédio; Ambiguidade sintática
+b) Não sabemos se é banco de sentar ou agência bancária; Ambiguidade lexical
+c) O rapaz pode ter pedido um prato vazio ou um prato de comida; Ambiguidade lexical
+d) Os alunos podem ter conseguido lugares na peça do teatro ou nos assentos do teatro; Ambiguidade lexical
+e) Não sabemos se foi a mãe que chegou bem tarde e viu o filho ou se foi o filho que chegou bem tarde; Ambiguidade sintática
+f) A candidata pode ter saído da platéia com o sentimento de emoção ou pode ser ela fez o público da plateia emocionado; Ambiguidade sintática
+g) O psicólogo pode ter feito o exame todo preoucupado ou se o paciente que estava precoupado; Ambiguidade sintática
+h) Não sabemos se o patrão é da Ana ou se é do João; Ambiguidade sintática
+
+3) Para o homem teto significa limite de gastos e para o garoto significa literalmente teto; Ambiguidade Lexical
+
+4) d) Câmara torna crime porte ilegal de armas.
+
+5) e) Campanha do governo do Estado contra a violência entra em nova fase.
+
+6) e) O presidente não tem diploma; aquele é importante? (o presidente)
+
+7) c) Meias pretas para mulheres.
+
+8) 
+
+a) Justiça bloqueia R$ 3 milhões de Crivela, outras 8 pessoas estão sendo investigados
+   Justiça bloqueia R$ 3 milhões de Crivel mais 8 pessoas sendo investigadas
+
+b) Grupo em uma tentativa de assalto atira contra família que estava dentro de carro em Vila Velha
+   Grupo em um tentativa de assalto
+
+c) Homem furta caminhão que pertence à uma de supermercados
+   Homem furta caminhão na rede de supermercados 
+ 
+d) Brasil retrocedeu dois anos em vinte anos 
+   Brasil vai conseguir avançar vinte anos em dois
+
+e) Móveis com estes preços não vai vender nada
+   Móveis com estes preços são tão ruins que não vai vender nada 
