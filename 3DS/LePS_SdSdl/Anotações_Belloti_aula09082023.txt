@@ -1,0 +1,165 @@
+Prof Belloti
+ip: 192.168.2.193
+
+-----------------------------------------------------------------------
+IeP
+-----------------------------------------------------------------------
+
+Curso da Cisco que vamos utilizar: CCNA1
+
+enviar a conta para marcos.bellotti@etec.sp.gov.br
+
+Dispositivo Final: Host; End-Point; Cliente.
+
+REDE PONTA-A-PONTA
+
+Recomendado para empresas pequenas(não é aconselhado para uma empresa grande), fácil config, menos complexo, menor custo,
+desvantagens: nenhuma adm, nn é segura, nn é escalavel, todos podem atuar como clinets e server(serviço), deixando o desempenho lento
+
+TIPOS
+
+Dispositivos Finais: os usuáriosque usam  rede
+ex: telefone, pc, etc...
+
+Rede LAN: redes locais(hardwares ou rede local); cabeamento sem problema;
+
+Rede WAN: Rede Remota/ ser o intermediário entre 2 redes locais que estão longes (Fibra Óptica, rádio); rede lenta preço alto.
+
+
+Redes Interconectadas: São os que servem à rede/fazem a rede funcionar, fazem controle de fluxo,
+ex: roteador sem fio, Switch LAN, roteador, dispositivo de firewall
+
+...
+
+Meios físicos de uma rede existir: Cobre; Ondas de Rádio (sem fio); Luz (sem fio);
+os meios dependem da prioridade da pessoa, como alguns são melhores em distância, velocidade e dinheiro.
+
+VPN: Criar uma rede privada numa rede pública
+
+Internet: é um caso particuplar da WAN; Uma parte particular da WAN
+
+Intranet: Entrada da LAN para WAN
+
+Extranet: Extrair a Intranet...
+
+SOHO: Rede com nro limitado de hosts (rede de farmácia, padaria, ou seja uma rede com poucas máquinas )
+
+FTTH: Nome da fibra que chega em sua casa
+
+Rede Convergente: Uma rede que funde redes de computador, telefônica e...
+
+Qualidade de Serviço: Priorizar prioridades (ex: um telefonema tem mais prioridade que a internet de um pc) 
+
+
+-----------------------------------------------------------------------
+Segurança de Sistema de Informação 
+-----------------------------------------------------------------------
+
+Curso da Cisco que vamos utilizar: CCNA Security
+
+Segurança da Rede: Confidencialidade, Integridade; Disponibilidade.
+
+BYOD (Traga seu Dispositivo): Trazer seu equipamento(máquina) para algum tipo de atividade(Trabalho)
+
+TIPOS DE NUVENS
+
+Nuvens Públicas: Geralmente gratuita, são públicas e são acessíveis apenas usando internet
+
+Nuvens Privadas: Geralmnente usada por organizações ou entidades específicas, como um governo. Ela é configurada usando a rede. Ou seja uma rede particular (Data Center)
+
+Nuvens Híbridas: Que usa Nuvem pública e privada conectadas em uma única arquitetura
+
+...
+
+AMEAÇAS À SEGURANÇA
+
+Ameaças de Rede LAN: não se preocupar apenas com a sguranças externa, se preocupar tbm com ameaça internas. 
+
+algumas delas: 
+- Virus(código malicioso em execução); 
+- spyware (aplicativos com coleta de dados);
+- ataques do dia zero (ocorrem no 1 dia em que uma vulnerabilidade se toma conhecida); 
+- ataque ator de ameaça (uma pessoa mal-intensionada ataca dispositivos de usuário ou recursos de rede);
+- ataque de negação de serviço (nn rouba nada mas trava o dispositivo para o usuário nn mexer);
+
+SOlUÇÂO: Antivirus e Filtragem de firewall
+
+
+
+
+Dia 09/08
+-----------------------------------------------------------------------
+IeP
+-----------------------------------------------------------------------
+
+CABOS DE REDE
+
+Reto - Usado quando eu ligo um host ou um servidor ou um switch
+
+Cross - usado quando ligo um switch com switch
+
+...
+
+FasEthernet 0/1 = Fa 0/1
+GigabitEternet 0/1 = Gio 0/1 
+
+MDIX = faz por software a adaptaçãodo cabo reto/cross ou seja suporta tanto cabo reto quanto cross
+
+Tellnet = acesso remotamente e sem segurança
+SSH = acesso remoto e criptografico
+
+?
+
+comando para mudar o prompt para o prompt privilegiado = > enable ou ena
+comando para o modo de configuração = # conf t ou # configure terminal
+
+EX(Hierarquia pronta):
+
+modo usuário = Switch>
+modo privilegiado = Switch#
+modo de configuração global = Switch(conf)#
+
+comando para alterar o nome do host [Hostname](conf)# hostname [Nome do hostname]
+comando para colocar para o nome padrão (config)# no hostname
+
+comando para boltar pro modo anterior à hierarquia = exit
+
+comando para fazer o boot do equipamento ou reiniciar para o ultimo save(limpar rastros) = reload
+
+comando para salvar o boot = # copy running-config startup-config ou copy run start
+
+comando para ver comandos que vc pode fazer = ?
+
+comando para criação de senha ao entrar no modo privilegiado = (conf)# enable secret [senha]
+
+
+
+-----------------------------------------------------------------------
+Segurança de Sistema de Informação 
+-----------------------------------------------------------------------
+
+Para sair dos erros = Ctrl + shift + 6
+
+comando para criação de senha ao entrar no modo privilegiado = (conf)# enable secret [senha]
+
+comando para configurar o endereço de ip do switch(
+	(conf)# int vlan 1
+	(conf-if)# ip address [endereço de ip] [mascara de ip]
+	(conf-if)# no shutdown -> "subir" a porta
+)
+
+comando para configurar o acesso de telnet (
+	(conf)# line vty 0 15
+	(conf-line)# password [senha]
+	(conf-line)# login
+)
+
+comando para configurar o acesso a porta de console(
+	(conf)#line console 0
+	(conf-line)# password ciscoc
+	(conf-line)# login
+)
+
+comando para botar criptografia nas senhas = (conf)# services password-encryption 
+
+comando para (conf)# banner motd $ [texto] $
