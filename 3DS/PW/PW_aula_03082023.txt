@@ -1,3 +1,6 @@
+Caminho do WorkSpace: c:\arquivos\eclipse-workspace
+
+03/08
 -----------------------------------------------------------------------------------------------
 JAVA
 -----------------------------------------------------------------------------------------------
@@ -24,6 +27,22 @@ Importar projeto da Workspace(para aparecer no Package Explorer): File > Import 
 
 Float arredonda o valor essa é a diferença entre ele e o Double
 
-Integer.parseInt(); = converte string para int(se a string for um numero)
+Converte string para int(se a string for um numero) = Integer.parseInt();
 
 Ler valor = JOptionPane.showInputDialog();
+
+
+10/08
+-----------------------------------------------------------------------------------------------
+JAVA
+-----------------------------------------------------------------------------------------------
+
+Converte string para double(se a string for um numero) = Double.parseDouble();
+
+comando de criação de atributo private int idade;
+
+Gerar get e set = Source > generate Getters and Setters
+
+Para herdar ex: public class Aluno extends Pessoa{} - Aluno vai estar herdando aos atributos de Pessoa
+
+Import automático = Ctrl + Shift + O
