@@ -1,0 +1,72 @@
+CREATE DATABASE #TEMPCONTAS
+CREATE TABLE Contas
+(
+	numero1 float NOT NULL,
+	numero2 float NOT NULL,
+	numero3 float NOT NULL,
+	numero4 float NOT NULL,
+	operacao char NOT NULL,
+);
+
+
+
+
+GO
+
+
+INSERT INTO Contas
+(numero1) VALUES(1)
+GO
+INSERT INTO Contas
+(numero2) VALUES (2)
+GO
+
+INSERT INTO Contas
+(numero3) VALUES (3)
+GO
+
+INSERT INTO Contas
+(numero4) VALUES (4)
+GO
+
+INSERT INTO Contas
+SET operacao = '+'
+
+IF (SELECT operacao IS NOT NULL FROM Contas)
+BEGIN
+	
+	IF operacao NOT IN ('+','-','*') 
+	BEGIN
+		SELECT 'OPERADOR NÃO INCLUSO'
+	END
+
+	ELSE
+	BEGIN
+		IF operacao = '+'
+		BEGIN
+			SELECT numero1 + numero2 + numero3 + numero4 AS [Resultado] FROM Contas
+		END		
+		
+		ELSE
+		BEGIN
+			IF operacao = '-'
+			BEGIN
+				SELECT numero1 - numero2 - numero3 - numero4 AS [Resultado] FROM Contas
+			END	
+			ELSE
+			BEGIN	
+				SELECT numero1 * numero2 *numero3 * numero4 AS [Resultado] FROM Contas
+			END
+		END
+	END
+	
+
+
+END
+ELSE
+begin
+	SELECT 'Falta operador'
+end
+
+
+
