@@ -1,0 +1,40 @@
+
+
+DECLARE @v1 int 
+	SELECT @v1 = 1
+
+DECLARE @v2 int
+	SELECT @v2 = 2
+
+DECLARE @v3 int 
+	SELECT @v3 = 3
+
+DECLARE @v4 int
+	SELECT @v4 = 4
+
+DECLARE @operacao varchar
+	SELECT @operacao = '+'
+
+DECLARE @valor float
+	SELECT @valor = 0
+
+IF(@operacao = '+')
+BEGIN
+	SELECT @valor = @v1 + @v2 + @v3 + @v4 
+END
+ELSE
+BEGIN
+	IF(@operacao = '-')
+	BEGIN
+		SELECT @valor = @v1 - @v2 - @v3 - @v4 
+	END
+	ELSE
+	BEGIN
+		IF(@operacao = '*')
+			SELECT @valor = @v1 * @v2 * @v3 * @v4 
+		ELSE
+			SELECT 'Operação inválida'
+	END
+END
+
+SELECT @valor
