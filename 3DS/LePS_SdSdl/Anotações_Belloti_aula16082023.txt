@@ -117,7 +117,7 @@ EX(Hierarquia pronta):
 
 modo usuário = Switch>
 modo privilegiado = Switch#
-modo de configuração global = Switch(conf)#
+modo de configuração global = Switch(conf)# = conf t
 
 comando para alterar o nome do host [Hostname](conf)# hostname [Nome do hostname]
 comando para colocar para o nome padrão (config)# no hostname
@@ -215,10 +215,6 @@ DoS = cria algum tipo de interrupção dos serviços de rede para usuários, dis
 
 MELHOR ATAQUE = SYN Fload
 
------------------------------------------------------------------------
-Segurança de Sistema de Informação 
------------------------------------------------------------------------
-
 OQ é segurança?
 
 - Confidencialidade: Apenas pessoas autorizadas podem ter acesso a informações confidenciais
@@ -226,6 +222,24 @@ OQ é segurança?
 - Disponibilidade: Usuários devem ter acesso ao que ele é autorizado a fazer
 
 Csirt: plataforma para ver ataques cibernéticos para prevenir que aquilo ocorra com seu sistema
+
+-----------------------------------------------------------------------
+Segurança de Sistema de Informação 
+-----------------------------------------------------------------------
+
+Protocolo = conjunto de regras, aplicadas por software, para garantur que a comunicaçã ocorra através da rede sem erros e com a menor quantidade possivel de controle (overhead = 0)
+
+Encapsulamento = tipo o envelope dos correios
+
+TROCA DE INFO NA REDE
+
+UNICAST = Mandar informaçôes para uma pessoa só
+MULTICAST = Mandar informações para um grupo específico
+BROADCAST = Mandar informações para diversas/todas as pessoas que estão na rede
+
+divisão polinomial(nal)
+
+encapsulamento e desencapsulamento
 
 
 
