@@ -151,7 +151,7 @@ comando para configurar o endereço de ip do switch(
 comando para configurar o acesso de telnet (
 	(conf)# line vty 0 15
 	(conf-line)# password [senha]
-	(conf-line)# login
+	(conf-line)# login -> efetivar isso
 )
 
 comando para configurar o acesso a porta de console(
@@ -160,7 +160,7 @@ comando para configurar o acesso a porta de console(
 	(conf-line)# login
 )
 
-comando para botar criptografia nas senhas = (conf)# services password-encryption 
+comando para botar criptografia nas senhas = (conf)# service password-encryption 
 
 comando para (conf)# banner motd $ [texto] $
 
@@ -248,6 +248,8 @@ Dia 23/08
 IeP
 -----------------------------------------------------------------------
 
+N/A
+
 -----------------------------------------------------------------------
 Segurança de Sistema de Informação 
 -----------------------------------------------------------------------
@@ -260,13 +262,71 @@ Firewall verifica o "crachá" da pessoa
 
 UPS =fonte de alimento Ininterrupta
 
-
-NO BREAK | Shutdown
- 30 min  |   
-
 IaaS = Infraestrutura com serviço(ficar responsavel pelo S.O, software que constroi a aplicatação e a própria aplicação.)
 
 PaaS = Properties?
 
 SaaS = Services?
+
+ACL = lista de controle de acesso
+
+erase run
+
+comando do prompt para conectar ao switch - C:\>telnet [ip do switch]
+
+comando para colocar qtd de caracter numa senha - Router(config)#security passwords min-lenght [qtd carac]
+comando para bloquear o login caso essas condições  - Router(config)#login block-for [min] attempts 3 within [min]
+
+INDIVIDUALIZAR O ACESSO
+
+Criação de username:
+	Switch(conf)# username [nome] secret [senha] (Nível 5 de senha) OU Switch(conf)# username [nome] password [senha] (Nível 7 de senha)
+	Switch(conf)# username [nome] privilege [nvl privilégio]
+
+	OU
+
+	Switch(conf)# username [nome] privilege [nvl privilégio] secret [senha]
+
+Caio 15
+Edvaldo 1
+
+Versão 12.2 = não suporta senha niveis 8 e 9, apenas a versão 12.33 pra cima
+
+Mostrar versão - Switch(conf)# show version
+
+comando de delay = 
+
+
+SSH
+O QUE É
+
+risco 
+
+telnet | HTTP = o problema é q a senha passa em texto claro
+
+se usar...
+
+SSH | https = ciptografado
+
+Switch(conf)# ip domain-name [nome] - Byra
+Switch(conf)# crypto key generate rsa general-keys modulus [tamanho da chave] - 4096
+
+rsa = script de criptografia assimétrica
+
+Se o cara errar n vezes a senha irá sair da sessão - Switch(conf)# ip ssh authentication-retries [n]
+
+Switch(conf)#ip ssh time-out 30
+
+Switch(conf)#transport input ssh
+
+Se nn mexer no equip por 5 minutos e meio irá fechar a sessão - exec-timeout 5 30
+
+ssh -l bellotti 192.168.10.3
+
+
+
+
+
+
+
 
