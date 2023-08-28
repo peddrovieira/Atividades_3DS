@@ -1,0 +1,52 @@
+CAIO QUIRINO DE ARAUJO
+RM: 222046
+_______________________________________________________
+
+DECLARE @media FLOAT, @qtdealunos INT, @contador INT, @idAlunoContador INT
+
+SELECT @qtdealunos = MAX(alunos.RM),
+@contador = 1
+FROM alunos AS alunos
+
+WHILE (@contador <= @qtdealunos)
+BEGIN
+
+	SELECT @media = mencoes.MENCAO
+	FROM mencoes AS mencoes
+	INNER JOIN alunos ON alunos.idmencao = mencoes.idmencao
+	WHERE alunos.RM = @contador
+
+	IF (@media >= 85)
+	BEGIN
+		SELECT 'Aluno ' + LTRIM(STR(alunos.RM)) + '-' + alunos.nome + ' Aprovado!' 
+		FROM alunos
+		WHERE alunos.RM = @contador
+
+	END
+	ELSE
+	BEGIN
+		IF(@media < 85 AND @media > 56)
+		BEGIN
+			SELECT 'Aluno ' + LTRIM(STR(alunos.RM)) + '-' + alunos.nome + ' Aprovado com Ressalva!' 
+			FROM alunos 
+			WHERE alunos.RM = @contador
+		END
+		ELSE
+		BEGIN
+			IF (@media <= 56 AND @media > 45)
+			BEGIN
+				SELECT 'Aluno ' + LTRIM(STR(alunos.RM)) + '-' + alunos.nome + ' Em Recuperação!' 
+				FROM alunos
+				WHERE alunos.RM = @contador
+			END
+			ELSE
+			BEGIN
+				SELECT 'Aluno ' + LTRIM(STR(alunos.RM)) + '-' + alunos.nome + ' Retido!' 
+				FROM alunos
+				WHERE alunos.RM = @contador
+			END
+		END
+	END
+
+	SELECT @contador = @contador + 1
+END
