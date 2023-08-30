@@ -756,16 +756,18 @@ INSERT INTO CarreiraProfissional VALUES(9, 6, 'Bradesco', '2017-09-02', '2022-05
 INSERT INTO CarreiraProfissional VALUES(10, 7, 'Bradesco', '2017-09-02', '2022-05-12', 'Gerente')
 
 
-INSERT INTO Candidato VALUES(1,1,'João Fonseca de Azevedo', 'joazinho@gmail.com', null, 'Yasmin Fonseca' )
-INSERT INTO Candidato VALUES(2,2,'Roberto Caetano da Silva', 'robertinho07@gmail.com', null, 'Rosana Caetano' )
-INSERT INTO Candidato VALUES(3,7)
-INSERT INTO Candidato VALUES(4,6)
-INSERT INTO Candidato VALUES(5,4)
-INSERT INTO Candidato VALUES(6,3)
-INSERT INTO Candidato VALUES(7,8)
-INSERT INTO Candidato VALUES(8,5)
-INSERT INTO Candidato VALUES(9,)
-INSERT INTO Candidato VALUES(10,)
+INSERT INTO Candidato VALUES(1, 1,'João Fonseca de Azevedo', 'joazinho@outlook.com', null, 'Yasmin Fonseca da Silva' )
+INSERT INTO Candidato VALUES(2, 2,'Roberto Caetano da Silva', 'robertinho07@gmail.com', null, 'Rosana Caetano Romero' )
+INSERT INTO Candidato VALUES(3, 7, 'Thiago Ryan Araujo', 'thiago.monster@gmail.com', null, 'Mariestela Araujo da Silva' )
+INSERT INTO Candidato VALUES(4, 6, 'Isabela Nacimento Quirino', 'isalinda@outlook.com', null, 'Giovanna Nascimento Gomes') 
+INSERT INTO Candidato VALUES(5, 4, 'Júlio Luiz Ervano Wulff', 'wolfruffus@gmail.com', null, 'Islayne Bragança Ervano')
+INSERT INTO Candidato VALUES(6, 3, 'Jane Rezende Estellet', 'ro.rezende@gmail.com', null, 'Agostinha Araujo Rezende')
+INSERT INTO Candidato VALUES(7, 8, 'Viviane Silvino Paes', 'vivi243@gmail.com', null, 'Marcy Vabo Silvino')
+INSERT INTO Candidato VALUES(8, 5, 'Tarcísio Felizardo Lopez', 'tarsi@outlook.com', null, 'Cristiane Vidal Felizardo')
+INSERT INTO Candidato VALUES(9, 4, 'Isaque Rios Sá', 'rioslavanda2492@outlook.com', null, 'Neiva Negris Rios')
+INSERT INTO Candidato VALUES(10, 1, 'Maycon Camara Leite', 'maycontwo02@gmail.com', null, 'Emanuelle Theodoro Camara')
+
+INSERT INTO EnderecoCandidato  VALUES(1, 1, '77007-116')
 
 INSERT INTO Nivel VALUES(0, 'Inexistente')
 INSERT INTO Nivel VALUES (1, 'Básico')
