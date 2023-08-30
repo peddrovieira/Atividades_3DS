@@ -1,0 +1,838 @@
+USE pubs
+DROP DATABASE UIJOBS
+
+CREATE DATABASE UIJOBS
+GO
+USE UIJOBS
+
+
+
+CREATE TABLE Cursos
+(
+	idCurso INT PRIMARY KEY NOT NULL,
+	nomeCurso VARCHAR(70) NOT NULL,
+	diplomaCurso CHAR(3) NOT NULL,
+);
+GO
+
+CREATE TABLE Escolaridade
+(
+	idEscolaridade INT PRIMARY KEY NOT NULL,
+	nomeEscolaridade VARCHAR(50) NOT NULL,
+	inicioEscolaridade DATETIME NOT NULL,
+	fimEscolaridade DATETIME NOT NULL,
+);
+GO
+
+CREATE TABLE FormacaoAcademica
+(
+	idFormacaoAcademica INT PRIMARY KEY NOT NULL,
+	idEscolaridade INT NOT NULL,
+	idCursos INT NOT NULL,
+	CONSTRAINT FK_idEscolaridade_FormacaoAcademica FOREIGN KEY (idEscolaridade)
+	REFERENCES Escolaridade (idEscolaridade),
+	CONSTRAINT FK_idCursos_FormacaoAcademica FOREIGN KEY (idCursos)
+	REFERENCES Cursos (idCurso)
+);
+
+CREATE INDEX INDEX_idEscolaridade_FormacaoAcademica ON FormacaoAcademica (idEscolaridade);
+CREATE INDEX INDEX_idCursos_FormacaoAcademica ON FormacaoAcademica (idCursos);
+GO
+
+CREATE TABLE Curriculo
+(
+	idCurriculo INT PRIMARY KEY NOT NULL,
+	idFormacaoAcademica INT NOT NULL,
+	objetivo VARCHAR(200) NOT NULL,
+	CONSTRAINT FK_idFormacaoAcademica_Curriculo FOREIGN KEY (idFormacaoAcademica)
+	REFERENCES FormacaoAcademica (idFormacaoAcademica),
+);
+CREATE INDEX INDEX_idFormacaoAcademica_Curriculo ON Curriculo (idFormacaoAcademica);
+
+
+CREATE TABLE CarreiraProfissional
+(
+	idCarreiraProfissional INT PRIMARY KEY NOT NULL,
+	idCurriculo INT, 
+	nomeEmpresa VARCHAR(100),
+	tempoInicio DATETIME,
+	tempoFim DATETIME,
+	cargo VARCHAR(50),
+	CONSTRAINT FK_idCurriculo_CarreiraProfissional FOREIGN KEY (idCurriculo)
+	REFERENCES Curriculo (idCurriculo)
+);
+
+CREATE INDEX INDEX_idCurriculo_CarreiraProfissional ON CarreiraProfissional (idCurriculo);
+GO
+
+
+CREATE TABLE Candidato
+(
+	idCandidato INT PRIMARY KEY NOT NULL,
+	idCurriculo INT NOT NULL,
+	nome VARCHAR(60) NOT NULL,
+	email VARCHAR(100) NOT NULL,
+	foto IMAGE,
+	nomeMae VARCHAR(60) NOT NULL,
+	CONSTRAINT FK_idCurriculo_Candidato FOREIGN KEY (idCurriculo)
+	REFERENCES Curriculo (idCurriculo)	 
+);
+CREATE INDEX INDEX_idCurriculo_Candidato ON Candidato (idCurriculo);
+GO
+
+CREATE TABLE EnderecoCandidato
+(
+	idEnderecoCandidato INT PRIMARY KEY NOT NULL,
+	idCandidato INT NOT NULL,
+	cep CHAR(8) NOT NULL,
+	logradouro VARCHAR(15)NOT NULL,
+	endereco VARCHAR(50)NOT NULL,
+	numero VARCHAR(5)NOT NULL,
+	complemento VARCHAR(15),
+	bairro VARCHAR(30)NOT NULL,
+	cidade VARCHAR(50)NOT NULL,
+	uf CHAR(2)NOT NULL,
+	CONSTRAINT FK_idCandidato_EnderecoCandidato FOREIGN KEY (idCandidato)
+	REFERENCES Candidato (idCandidato)
+);
+
+CREATE INDEX INDEX_idCandidato_EnderecoCandidato ON EnderecoCandidato (idCandidato);
+
+CREATE TABLE Portes
+(
+	idPortes INT PRIMARY KEY NOT NULL,
+	tiposPortes VARCHAR(20)NOT NULL,
+);
+
+CREATE TABLE Empresa
+(
+	idEmpresa INT PRIMARY KEY NOT NULL,
+	idPortes INT NOT NULL,
+	cnpj CHAR(18) NOT NULL,
+	razaoSocial VARCHAR(50) NOT NULL,
+	nomeFantasia VARCHAR(30)NOT NULL,
+
+	CONSTRAINT FK_idPortes_Empresa FOREIGN KEY (idPortes)
+	REFERENCES Portes (idPortes)
+	
+);
+
+CREATE INDEX INDEX_idPortes_Empresa ON Empresa (idPortes);
+
+CREATE TABLE EnderecoEmpresa
+(
+	idEnderecoEmpresa INT PRIMARY KEY NOT NULL,
+	idEmpresa INT NOT NULL,
+	cep CHAR(8) NOT NULL,
+	logradouro VARCHAR(15) NOT NULL,
+	endereco VARCHAR(50) NOT NULL,
+	numero VARCHAR(5) NOT NULL,
+	complemento VARCHAR(20) NULL,
+	bairro VARCHAR(30) NOT NULL,
+	cidade VARCHAR(50) NOT NULL,
+	uf CHAR(2) NOT NULL,
+	CONSTRAINT FK_idEmpresa_EnderecoEmpresa FOREIGN KEY (idEmpresa)
+	REFERENCES Empresa (idEmpresa)
+);
+
+CREATE INDEX INDEX_idEmpresa_EnderecoEmpresa ON EnderecoEmpresa (idEmpresa);
+
+
+CREATE TABLE Beneficio (
+	idBeneficio INT PRIMARY KEY NOT NULL,
+	nomeBeneficio VARCHAR(50) NOT NULL,
+);
+
+CREATE TABLE SituacaoVaga (
+	idSituacaoVaga INT PRIMARY KEY NOT NULL,
+	situacaoAtual VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE Vagas (
+	idVagas INT PRIMARY KEY NOT NULL,
+	idEscolaridade INT NOT NULL,
+	idSituacaoVaga INT NOT NULL,
+	idEmpresa INT NOT NULL,
+	cargo VARCHAR(25)NOT NULL,
+	descricao VARCHAR(100),
+	inicioVigencia DATETIME,
+	finalVigencia DATETIME,
+	salario FLOAT(15) NOT NULL,
+	cargaHoraria INT NOT NULL,
+	localidade VARCHAR NOT NULL,
+	percAderencia FLOAT(4),
+	escalaHorario VARCHAR(30) NOT NULL,
+	CONSTRAINT FK_idEmpresa_Vagas FOREIGN KEY (idEmpresa)
+	REFERENCES Empresa (idEmpresa),
+	CONSTRAINT FK_idSituacaoVaga_Vagas FOREIGN KEY (idSituacaoVaga)
+	REFERENCES SituacaoVaga (idSituacaoVaga),
+	CONSTRAINT FK_idEscolaridade_Vagas FOREIGN KEY (idEscolaridade)
+	REFERENCES Escolaridade (idEscolaridade)
+);
+
+CREATE INDEX INDEX_idEmpresa_Vagas ON Vagas (idEmpresa);
+CREATE INDEX INDEX_idSituacaoVaga_Vagas ON Vagas (idSituacaoVaga);
+CREATE INDEX INDEX_idEscolaridade_Vagas ON Vagas (idEscolaridade);
+GO
+
+
+CREATE TABLE BeneficioVagas (
+	idVagas INT NOT NULL,
+	idBeneficio INT NOT NULL,
+	PRIMARY KEY(idVagas, idBeneficio), 
+  	CONSTRAINT FK_idBeneficio_BeneficioVagas FOREIGN KEY (idBeneficio)
+	REFERENCES Beneficio (idBeneficio),
+	CONSTRAINT FK_idVagas_BeneficioVagas FOREIGN KEY (idVagas)
+	REFERENCES Vagas (idVagas),
+);
+
+CREATE INDEX INDEX_idBeneficio_BeneficioVagas ON BeneficioVagas (idBeneficio);
+CREATE INDEX INDEX_idVagas_BeneficioVaga ON BeneficioVagas (idVagas);
+
+CREATE TABLE VagasCandidato (
+	idVagas INT NOT NULL,
+	idCandidato INT NOT NULL,
+	PRIMARY KEY(idVagas, idCandidato),
+	CONSTRAINT FK_idVagas_VagasCandidato FOREIGN KEY (idVagas)
+	REFERENCES Vagas (idVagas),
+	CONSTRAINT FK_idCandidato_VagasCandidato FOREIGN KEY (idCandidato)
+	REFERENCES Candidato (idCandidato),
+);
+
+CREATE INDEX INDEX_idVagas_VagasCandidato ON VagasCandidato (idVagas);
+CREATE INDEX INDEX_idCandidato_VagasCandidato ON VagasCandidato (idCandidato);
+
+CREATE TABLE Nivel (
+	idNivel INT PRIMARY KEY NOT NULL,
+	niveisDisponiveis VARCHAR(20) NOT NULL,
+);
+
+CREATE TABLE Idiomas (
+	idIdiomas INT PRIMARY KEY NOT NULL,
+	idNivel INT NOT NULL,
+	nomeIdioma VARCHAR(15) NOT NULL,
+	CONSTRAINT FK_idNivel_Idiomas FOREIGN KEY (idNivel)
+	REFERENCES Nivel (idNivel),
+);
+
+CREATE INDEX INDEX_idNivel_Idiomas ON Idiomas (idNivel);
+
+CREATE TABLE Conhecimentos (
+	idConhecimentos INT PRIMARY KEY NOT NULL,
+	
+	nomeConhecimento VARCHAR(30) NOT NULL,
+	
+);
+
+
+
+CREATE TABLE CurriculoIdiomas (
+	idCurriculo INT NOT NULL,
+	idIdiomas INT NOT NULL,
+	PRIMARY KEY(idCurriculo, idIdiomas),
+	CONSTRAINT FK_idCurriculo_CurriculoIdiomas FOREIGN KEY (idCurriculo)
+	REFERENCES Curriculo (idCurriculo),
+	CONSTRAINT FK_idIdiomas_CurriculoIdiomas FOREIGN KEY (idIdiomas)
+	REFERENCES Idiomas (idIdiomas),
+);
+
+CREATE INDEX INDEX_idCurriculo_CurriculoIdiomas ON CurriculoIdiomas (idCurriculo);
+CREATE INDEX INDEX_idIdiomas_CurriculoIdiomas ON CurriculoIdiomas (idIdiomas);
+
+CREATE TABLE CurriculoConhecimentos (
+	idCurriculo INT NOT NULL,
+	idConhecimentos INT NOT NULL,
+	idNivel INT NOT NULL,
+	PRIMARY KEY(idCurriculo, idConhecimentos),
+	CONSTRAINT FK_idCurriculo_CurriculoConhecimentos FOREIGN KEY (idCurriculo)
+	REFERENCES Curriculo (idCurriculo),
+	CONSTRAINT FK_idConhecimentos_CurriculoConhecimentos FOREIGN KEY (idConhecimentos)
+	REFERENCES Conhecimentos (idConhecimentos),
+	CONSTRAINT FK_idNivel_Conhecimentos FOREIGN KEY (idNivel)
+	REFERENCES Nivel (idNivel),
+);
+
+CREATE INDEX INDEX_idCurriculo_CurriculoConhecimentos ON CurriculoConhecimentos (idCurriculo);
+CREATE INDEX INDEX_idConhecimentos_CurriculoConhecimentos ON CurriculoConhecimentos (idConhecimentos);
+
+
+CREATE TABLE VagasConhecimentos (
+	idVagas INT NOT NULL,
+	idConhecimentos INT NOT NULL,
+	idNivel INT NOT NULL,
+	PRIMARY KEY(idVagas, idConhecimentos),
+	CONSTRAINT idVagas FOREIGN KEY (idVagas)
+	REFERENCES Vagas (idVagas),
+	CONSTRAINT FK_idConhecimentos_VagasConhecimentos FOREIGN KEY (idConhecimentos)
+	REFERENCES Conhecimentos (idConhecimentos),
+	CONSTRAINT FK_idNivel_VagasConhecimentos FOREIGN KEY (idNivel)
+	REFERENCES Nivel (idNivel),
+);
+
+CREATE INDEX INDEX_idVagas_VagasConhecimentos ON VagasConhecimentos (idVagas);
+CREATE INDEX INDEX_idConhecimentos_VagasConhecimentos ON VagasConhecimentos (idConhecimentos);
+CREATE INDEX INDEX_idNivel_VagasConhecimentos ON VagasConhecimentos (idNivel);
+
+CREATE TABLE VagasIdiomas (
+	idVagas INT NOT NULL,
+	idIdiomas INT NOT NULL,
+	PRIMARY KEY(idVagas, idIdiomas),
+	CONSTRAINT FK_idVagas_VagasIdiomas FOREIGN KEY (idVagas)
+	REFERENCES Vagas (idVagas),
+	CONSTRAINT FK_idIdiomas_VagasIdiomas FOREIGN KEY (idIdiomas)
+	REFERENCES Idiomas (idIdiomas),
+);
+
+CREATE INDEX INDEX_idVagas_VagasIdiomas ON VagasIdiomas (idVagas);
+CREATE INDEX INDEX_idIdiomas_VagasIdiomas ON VagasIdiomas (idIdiomas);
+GO
+
+INSERT INTO Cursos VALUES(1,'Ciências da Computação', 'Sim')
+INSERT INTO Cursos VALUES(2,'Redes e Segurança', 'Sim')
+INSERT INTO Cursos VALUES(3,'Banco de Dados', 'Sim')
+INSERT INTO Cursos VALUES(4,'Excel', 'Não')
+INSERT INTO Cursos VALUES(5,'Office', 'Não')
+INSERT INTO Cursos VALUES(6,'Aprender Python', 'Sim')
+INSERT INTO Cursos VALUES(7,'Marketing Digital', 'Não')
+INSERT INTO Cursos VALUES(8,'InfraEstrutura', 'Não')
+
+INSERT INTO Escolaridade VALUES(1,'Etec Horacio Augusto da Silveira', '2023-08-22', '2023-11-22')
+INSERT INTO Escolaridade VALUES(2,'Senai', '2021-08-22', '2023-04-22')
+INSERT INTO Escolaridade VALUES(3,'Babilucho', '2025-05-35', '2023-11-22')
+INSERT INTO Escolaridade VALUES(4,'SAGA', '2018-05-06', '2019-12-06')
+INSERT INTO Escolaridade VALUES(5,'Evoloo', '2018-02-01', '2020-05-16')
+INSERT INTO Escolaridade VALUES(6,'DotDoom', '2026-01-31', '2022-12-22')
+INSERT INTO Escolaridade VALUES(7,'Pysbra', '2023-02-22', '2023-02-22')
+INSERT INTO Escolaridade VALUES(8,'Fatec do Sei Lá', '2010-08-27', '2013-04-17')
+
+INSERT INTO FormacaoAcademica VALUES(1,1,3)
+INSERT INTO FormacaoAcademica VALUES(2,4,6)
+INSERT INTO FormacaoAcademica VALUES(3,6,4)
+INSERT INTO FormacaoAcademica VALUES(4,8,2)
+INSERT INTO FormacaoAcademica VALUES(5,2,8)
+INSERT INTO FormacaoAcademica VALUES(6,3,4)
+INSERT INTO FormacaoAcademica VALUES(7,6,1)
+INSERT INTO FormacaoAcademica VALUES(8,7,2)
+INSERT INTO FormacaoAcademica VALUES(9,3,4)
+INSERT INTO FormacaoAcademica VALUES(10,2,1)
+
+INSERT INTO Curriculo VALUES(1,2,'Meu Objetivo é ser o maior fullstack do brasil e do mundo, estou entrando nessa empresa com conhecimentos tecnicos para atingir meu objetivo')
+INSERT INTO Curriculo VALUES(2,3,'Estou em busca de um emprego para desenvolver minhas habilidades em JAVA')
+INSERT INTO Curriculo VALUES(3,1,'Só alcança quem começa')
+INSERT INTO Curriculo VALUES(4,6,'O dinheiro não é o problema, a falta de ideias criativas para ganha-lo que é')
+INSERT INTO Curriculo VALUES(5,7,'Até agora, tenho estado a evitar a sua inevitabilidade.')
+INSERT INTO Curriculo VALUES(6,4,'É possível, mas achamos bastante duvidoso.')
+INSERT INTO Curriculo VALUES(7,5,'As pessoas devem olhar para mim para a consistência e perseverança.')
+INSERT INTO Curriculo VALUES(8,8,'O número de combinações possíveis e consequentes utilizações parece ilimitado.')
+
+INSERT INTO CarreiraProfissional VALUES(1, 1, 'Bradesco', '2017-09-02', '2022-05-12', 'Gerente')
+INSERT INTO CarreiraProfissional VALUES(2, 7, 'Ubisoft', '2017-09-02', '2022-05-12', 'Gerente')
+INSERT INTO CarreiraProfissional VALUES(3, 8, 'Oracle', '2017-09-02', '2022-05-12', 'Gerente')
+INSERT INTO CarreiraProfissional VALUES(4, 4, 'Google', '2017-09-02', '2022-05-12', 'Gerente')
+INSERT INTO CarreiraProfissional VALUES(5, 4, 'Amazon', '2017-09-02', '2022-05-12', 'Gerente')
+INSERT INTO CarreiraProfissional VALUES(6, 5, 'Microsoft', '2017-09-02', '2022-05-12', 'Gerente')
+INSERT INTO CarreiraProfissional VALUES(7, 2, 'ChibiliKid', '2017-09-02', '2022-05-12', 'Gerente')
+INSERT INTO CarreiraProfissional VALUES(8, 3, 'Bradesco', '2017-09-02', '2022-05-12', 'Gerente')
+INSERT INTO CarreiraProfissional VALUES(9, 6, 'Bradesco', '2017-09-02', '2022-05-12', 'Gerente')
+INSERT INTO CarreiraProfissional VALUES(10, 7, 'Bradesco', '2017-09-02', '2022-05-12', 'Gerente')
+
+
+INSERT INTO Candidato VALUES(1,1,'João Fonseca de Azevedo', 'joazinho@gmail.com', null, 'Yasmin Fonseca' )
+INSERT INTO Candidato VALUES(2,2,'Roberto Caetano da Silva', 'robertinho07@gmail.com', null, 'Rosana Caetano' )
+INSERT INTO Candidato VALUES(3,7)
+INSERT INTO Candidato VALUES(4,6)
+INSERT INTO Candidato VALUES(5,4)
+INSERT INTO Candidato VALUES(6,3)
+INSERT INTO Candidato VALUES(7,8)
+INSERT INTO Candidato VALUES(8,5)
+INSERT INTO Candidato VALUES(9,)
+INSERT INTO Candidato VALUES(10,)
+
+INSERT INTO Nivel VALUES(0, 'Inexistente')
+INSERT INTO Nivel VALUES (1, 'Básico')
+INSERT INTO Nivel VALUES(2, 'Intermediário')
+INSERT INTO Nivel VALUES(3, 'Avançado')
+INSERT INTO Nivel VALUES(4, 'Especialista')
+
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('CSharp',1)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('Java', 2)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ( 'Python' ,3)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('JavaScript' ,4)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ( 'Ruby', 5)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('PHP', 6)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('MySQL', 7)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('SQLServer', 8)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('ASPnet', 9)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('Spring', 10)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('Django',11)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('NodeJS', 12)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('React', 13)
+
+
+INSERT INTO CurriculoConhecimentos VALUES (1,1,2),(1,2,2),(1,3,1),(1,4,2)
+INSERT INTO CurriculoConhecimentos VALUES (2,1,1),(2,2,2),(2,3,1),(2,4,2)
+
+INSERT INTO SituacaoVaga VALUES (1, 'Aberto')
+INSERT INTO SituacaoVaga VALUES (2, 'Fechado')
+INSERT INTO SituacaoVaga VALUES (3, 'Suspenso')
+
+INSERT INTO Portes VALUES (1, 'Pequena')
+INSERT INTO Portes VALUES (2, 'Média')
+INSERT INTO Portes VALUES (3, 'Grande')
+
+INSERT INTO Empresa VALUES (1, 2 , '11.722.246/0001-93' , 'Ficticios para Testes SA', 'Teste')
+ 
+INSERT INTO Vagas VALUES (1 , 1 , 1, 1 , 'Estágiario', 'asdasd',NULL,NULL, 1200.50, 30, 'S', NULL, '6X2 Semanais')
+
+INSERT INTO VagasConhecimentos VALUES (1 , 1 ,2), (1 , 2 ,2), (1 , 3,2), (1 , 4,2) 
+DELETE FROM VagasConhecimentos
+INSERT INTO VagasCandidato VALUES (1,1), (1,2)
+DROP TABLE Notificacao
+CREATE TABLE Notificacao
+(
+	idNotificacao INT IDENTITY PRIMARY KEY NOT NULL,
+	idVaga INT NOT NULL,
+	idCandidato INT NOT NULL,
+	dtNotificao SMALLDATETIME NOT NULL,
+	dtLeitura SMALLDATETIME
+);
+GO
+--INSERT INTO Notificacao VALUES (1,1,1,1,GETDATE(),'SIM'), (2,1,2,1,GETDATE(),'SIM')
+
+select * from Vagas
+select * from VagasConhecimentos
+
+select * from Candidato
+select * from Curriculo
+select * from CurriculoConhecimentos
+
+select * from Notificacao
+
+ALTER TRIGGER VagaCandidatosAderentes ON VagasConhecimentos FOR INSERT
+AS
+BEGIN
+	INSERT INTO Notificacao (idVaga, idCandidato, dtNotificao)
+	SELECT DISTINCT VC.idVagas, CA.idCandidato, CURRENT_TIMESTAMP 
+	FROM CurriculoConhecimentos CC
+	INNER JOIN Candidato CA ON CC.idCurriculo = CA.idCurriculo
+	INNER JOIN inserted VC ON CC.idConhecimentos = VC.idConhecimentos AND CC.idNivel >= VC.idNivel
+END
+USE pubs
+DROP DATABASE UIJOBS
+
+CREATE DATABASE UIJOBS
+GO
+USE UIJOBS
+
+
+
+CREATE TABLE Cursos
+(
+	idCurso INT PRIMARY KEY NOT NULL,
+	nomeCurso VARCHAR(70) NOT NULL,
+	diplomaCurso CHAR(3) NOT NULL,
+);
+GO
+
+CREATE TABLE Escolaridade
+(
+	idEscolaridade INT PRIMARY KEY NOT NULL,
+	nomeEscolaridade VARCHAR(50) NOT NULL,
+	inicioEscolaridade DATETIME NOT NULL,
+	fimEscolaridade DATETIME NOT NULL,
+);
+GO
+
+CREATE TABLE FormacaoAcademica
+(
+	idFormacaoAcademica INT PRIMARY KEY NOT NULL,
+	idEscolaridade INT NOT NULL,
+	idCursos INT NOT NULL,
+	CONSTRAINT FK_idEscolaridade_FormacaoAcademica FOREIGN KEY (idEscolaridade)
+	REFERENCES Escolaridade (idEscolaridade),
+	CONSTRAINT FK_idCursos_FormacaoAcademica FOREIGN KEY (idCursos)
+	REFERENCES Cursos (idCurso)
+);
+
+CREATE INDEX INDEX_idEscolaridade_FormacaoAcademica ON FormacaoAcademica (idEscolaridade);
+CREATE INDEX INDEX_idCursos_FormacaoAcademica ON FormacaoAcademica (idCursos);
+GO
+
+CREATE TABLE Curriculo
+(
+	idCurriculo INT PRIMARY KEY NOT NULL,
+	idFormacaoAcademica INT NOT NULL,
+	objetivo VARCHAR(200) NOT NULL,
+	CONSTRAINT FK_idFormacaoAcademica_Curriculo FOREIGN KEY (idFormacaoAcademica)
+	REFERENCES FormacaoAcademica (idFormacaoAcademica),
+);
+CREATE INDEX INDEX_idFormacaoAcademica_Curriculo ON Curriculo (idFormacaoAcademica);
+
+
+CREATE TABLE CarreiraProfissional
+(
+	idCarreiraProfissional INT PRIMARY KEY NOT NULL,
+	idCurriculo INT, 
+	nomeEmpresa VARCHAR(100),
+	tempoInicio DATETIME,
+	tempoFim DATETIME,
+	cargo VARCHAR(50),
+	CONSTRAINT FK_idCurriculo_CarreiraProfissional FOREIGN KEY (idCurriculo)
+	REFERENCES Curriculo (idCurriculo)
+);
+
+CREATE INDEX INDEX_idCurriculo_CarreiraProfissional ON CarreiraProfissional (idCurriculo);
+GO
+
+
+CREATE TABLE Candidato
+(
+	idCandidato INT PRIMARY KEY NOT NULL,
+	idCurriculo INT NOT NULL,
+	nome VARCHAR(60) NOT NULL,
+	email VARCHAR(100) NOT NULL,
+	foto IMAGE,
+	nomeMae VARCHAR(60) NOT NULL,
+	CONSTRAINT FK_idCurriculo_Candidato FOREIGN KEY (idCurriculo)
+	REFERENCES Curriculo (idCurriculo)	 
+);
+CREATE INDEX INDEX_idCurriculo_Candidato ON Candidato (idCurriculo);
+GO
+
+CREATE TABLE EnderecoCandidato
+(
+	idEnderecoCandidato INT PRIMARY KEY NOT NULL,
+	idCandidato INT NOT NULL,
+	cep CHAR(8) NOT NULL,
+	logradouro VARCHAR(15)NOT NULL,
+	endereco VARCHAR(50)NOT NULL,
+	numero VARCHAR(5)NOT NULL,
+	complemento VARCHAR(15),
+	bairro VARCHAR(30)NOT NULL,
+	cidade VARCHAR(50)NOT NULL,
+	uf CHAR(2)NOT NULL,
+	CONSTRAINT FK_idCandidato_EnderecoCandidato FOREIGN KEY (idCandidato)
+	REFERENCES Candidato (idCandidato)
+);
+
+CREATE INDEX INDEX_idCandidato_EnderecoCandidato ON EnderecoCandidato (idCandidato);
+
+CREATE TABLE Portes
+(
+	idPortes INT PRIMARY KEY NOT NULL,
+	tiposPortes VARCHAR(20)NOT NULL,
+);
+
+CREATE TABLE Empresa
+(
+	idEmpresa INT PRIMARY KEY NOT NULL,
+	idPortes INT NOT NULL,
+	cnpj CHAR(18) NOT NULL,
+	razaoSocial VARCHAR(50) NOT NULL,
+	nomeFantasia VARCHAR(30)NOT NULL,
+
+	CONSTRAINT FK_idPortes_Empresa FOREIGN KEY (idPortes)
+	REFERENCES Portes (idPortes)
+	
+);
+
+CREATE INDEX INDEX_idPortes_Empresa ON Empresa (idPortes);
+
+CREATE TABLE EnderecoEmpresa
+(
+	idEnderecoEmpresa INT PRIMARY KEY NOT NULL,
+	idEmpresa INT NOT NULL,
+	cep CHAR(8) NOT NULL,
+	logradouro VARCHAR(15) NOT NULL,
+	endereco VARCHAR(50) NOT NULL,
+	numero VARCHAR(5) NOT NULL,
+	complemento VARCHAR(20) NULL,
+	bairro VARCHAR(30) NOT NULL,
+	cidade VARCHAR(50) NOT NULL,
+	uf CHAR(2) NOT NULL,
+	CONSTRAINT FK_idEmpresa_EnderecoEmpresa FOREIGN KEY (idEmpresa)
+	REFERENCES Empresa (idEmpresa)
+);
+
+CREATE INDEX INDEX_idEmpresa_EnderecoEmpresa ON EnderecoEmpresa (idEmpresa);
+
+
+CREATE TABLE Beneficio (
+	idBeneficio INT PRIMARY KEY NOT NULL,
+	nomeBeneficio VARCHAR(50) NOT NULL,
+);
+
+CREATE TABLE SituacaoVaga (
+	idSituacaoVaga INT PRIMARY KEY NOT NULL,
+	situacaoAtual VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE Vagas (
+	idVagas INT PRIMARY KEY NOT NULL,
+	idEscolaridade INT NOT NULL,
+	idSituacaoVaga INT NOT NULL,
+	idEmpresa INT NOT NULL,
+	cargo VARCHAR(25)NOT NULL,
+	descricao VARCHAR(100),
+	inicioVigencia DATETIME,
+	finalVigencia DATETIME,
+	salario FLOAT(15) NOT NULL,
+	cargaHoraria INT NOT NULL,
+	localidade VARCHAR NOT NULL,
+	percAderencia FLOAT(4),
+	escalaHorario VARCHAR(30) NOT NULL,
+	CONSTRAINT FK_idEmpresa_Vagas FOREIGN KEY (idEmpresa)
+	REFERENCES Empresa (idEmpresa),
+	CONSTRAINT FK_idSituacaoVaga_Vagas FOREIGN KEY (idSituacaoVaga)
+	REFERENCES SituacaoVaga (idSituacaoVaga),
+	CONSTRAINT FK_idEscolaridade_Vagas FOREIGN KEY (idEscolaridade)
+	REFERENCES Escolaridade (idEscolaridade)
+);
+
+CREATE INDEX INDEX_idEmpresa_Vagas ON Vagas (idEmpresa);
+CREATE INDEX INDEX_idSituacaoVaga_Vagas ON Vagas (idSituacaoVaga);
+CREATE INDEX INDEX_idEscolaridade_Vagas ON Vagas (idEscolaridade);
+GO
+
+
+CREATE TABLE BeneficioVagas (
+	idVagas INT NOT NULL,
+	idBeneficio INT NOT NULL,
+	PRIMARY KEY(idVagas, idBeneficio), 
+  	CONSTRAINT FK_idBeneficio_BeneficioVagas FOREIGN KEY (idBeneficio)
+	REFERENCES Beneficio (idBeneficio),
+	CONSTRAINT FK_idVagas_BeneficioVagas FOREIGN KEY (idVagas)
+	REFERENCES Vagas (idVagas),
+);
+
+CREATE INDEX INDEX_idBeneficio_BeneficioVagas ON BeneficioVagas (idBeneficio);
+CREATE INDEX INDEX_idVagas_BeneficioVaga ON BeneficioVagas (idVagas);
+
+CREATE TABLE VagasCandidato (
+	idVagas INT NOT NULL,
+	idCandidato INT NOT NULL,
+	PRIMARY KEY(idVagas, idCandidato),
+	CONSTRAINT FK_idVagas_VagasCandidato FOREIGN KEY (idVagas)
+	REFERENCES Vagas (idVagas),
+	CONSTRAINT FK_idCandidato_VagasCandidato FOREIGN KEY (idCandidato)
+	REFERENCES Candidato (idCandidato),
+);
+
+CREATE INDEX INDEX_idVagas_VagasCandidato ON VagasCandidato (idVagas);
+CREATE INDEX INDEX_idCandidato_VagasCandidato ON VagasCandidato (idCandidato);
+
+CREATE TABLE Nivel (
+	idNivel INT PRIMARY KEY NOT NULL,
+	niveisDisponiveis VARCHAR(20) NOT NULL,
+);
+
+CREATE TABLE Idiomas (
+	idIdiomas INT PRIMARY KEY NOT NULL,
+	idNivel INT NOT NULL,
+	nomeIdioma VARCHAR(15) NOT NULL,
+	CONSTRAINT FK_idNivel_Idiomas FOREIGN KEY (idNivel)
+	REFERENCES Nivel (idNivel),
+);
+
+CREATE INDEX INDEX_idNivel_Idiomas ON Idiomas (idNivel);
+
+CREATE TABLE Conhecimentos (
+	idConhecimentos INT PRIMARY KEY NOT NULL,
+	
+	nomeConhecimento VARCHAR(30) NOT NULL,
+	
+);
+
+
+
+CREATE TABLE CurriculoIdiomas (
+	idCurriculo INT NOT NULL,
+	idIdiomas INT NOT NULL,
+	PRIMARY KEY(idCurriculo, idIdiomas),
+	CONSTRAINT FK_idCurriculo_CurriculoIdiomas FOREIGN KEY (idCurriculo)
+	REFERENCES Curriculo (idCurriculo),
+	CONSTRAINT FK_idIdiomas_CurriculoIdiomas FOREIGN KEY (idIdiomas)
+	REFERENCES Idiomas (idIdiomas),
+);
+
+CREATE INDEX INDEX_idCurriculo_CurriculoIdiomas ON CurriculoIdiomas (idCurriculo);
+CREATE INDEX INDEX_idIdiomas_CurriculoIdiomas ON CurriculoIdiomas (idIdiomas);
+
+CREATE TABLE CurriculoConhecimentos (
+	idCurriculo INT NOT NULL,
+	idConhecimentos INT NOT NULL,
+	idNivel INT NOT NULL,
+	PRIMARY KEY(idCurriculo, idConhecimentos),
+	CONSTRAINT FK_idCurriculo_CurriculoConhecimentos FOREIGN KEY (idCurriculo)
+	REFERENCES Curriculo (idCurriculo),
+	CONSTRAINT FK_idConhecimentos_CurriculoConhecimentos FOREIGN KEY (idConhecimentos)
+	REFERENCES Conhecimentos (idConhecimentos),
+	CONSTRAINT FK_idNivel_Conhecimentos FOREIGN KEY (idNivel)
+	REFERENCES Nivel (idNivel),
+);
+
+CREATE INDEX INDEX_idCurriculo_CurriculoConhecimentos ON CurriculoConhecimentos (idCurriculo);
+CREATE INDEX INDEX_idConhecimentos_CurriculoConhecimentos ON CurriculoConhecimentos (idConhecimentos);
+
+
+CREATE TABLE VagasConhecimentos (
+	idVagas INT NOT NULL,
+	idConhecimentos INT NOT NULL,
+	idNivel INT NOT NULL,
+	PRIMARY KEY(idVagas, idConhecimentos),
+	CONSTRAINT idVagas FOREIGN KEY (idVagas)
+	REFERENCES Vagas (idVagas),
+	CONSTRAINT FK_idConhecimentos_VagasConhecimentos FOREIGN KEY (idConhecimentos)
+	REFERENCES Conhecimentos (idConhecimentos),
+	CONSTRAINT FK_idNivel_VagasConhecimentos FOREIGN KEY (idNivel)
+	REFERENCES Nivel (idNivel),
+);
+
+CREATE INDEX INDEX_idVagas_VagasConhecimentos ON VagasConhecimentos (idVagas);
+CREATE INDEX INDEX_idConhecimentos_VagasConhecimentos ON VagasConhecimentos (idConhecimentos);
+CREATE INDEX INDEX_idNivel_VagasConhecimentos ON VagasConhecimentos (idNivel);
+
+CREATE TABLE VagasIdiomas (
+	idVagas INT NOT NULL,
+	idIdiomas INT NOT NULL,
+	PRIMARY KEY(idVagas, idIdiomas),
+	CONSTRAINT FK_idVagas_VagasIdiomas FOREIGN KEY (idVagas)
+	REFERENCES Vagas (idVagas),
+	CONSTRAINT FK_idIdiomas_VagasIdiomas FOREIGN KEY (idIdiomas)
+	REFERENCES Idiomas (idIdiomas),
+);
+
+CREATE INDEX INDEX_idVagas_VagasIdiomas ON VagasIdiomas (idVagas);
+CREATE INDEX INDEX_idIdiomas_VagasIdiomas ON VagasIdiomas (idIdiomas);
+GO
+
+INSERT INTO Cursos VALUES(1,'Ciências da Computação', 'Sim')
+INSERT INTO Cursos VALUES(2,'Redes e Segurança', 'Sim')
+INSERT INTO Cursos VALUES(3,'Banco de Dados', 'Sim')
+INSERT INTO Cursos VALUES(4,'Excel', 'Não')
+INSERT INTO Cursos VALUES(5,'Office', 'Não')
+INSERT INTO Cursos VALUES(6,'Aprender Python', 'Sim')
+INSERT INTO Cursos VALUES(7,'Marketing Digital', 'Não')
+INSERT INTO Cursos VALUES(8,'InfraEstrutura', 'Não')
+
+INSERT INTO Escolaridade VALUES(1,'Etec Horacio Augusto da Silveira', '2023-08-22', '2023-11-22')
+INSERT INTO Escolaridade VALUES(2,'Senai', '2021-08-22', '2023-04-22')
+INSERT INTO Escolaridade VALUES(3,'Babilucho', '2025-05-35', '2023-11-22')
+INSERT INTO Escolaridade VALUES(4,'SAGA', '2018-05-06', '2019-12-06')
+INSERT INTO Escolaridade VALUES(5,'Evoloo', '2018-02-01', '2020-05-16')
+INSERT INTO Escolaridade VALUES(6,'DotDoom', '2026-01-31', '2022-12-22')
+INSERT INTO Escolaridade VALUES(7,'Pysbra', '2023-02-22', '2023-02-22')
+INSERT INTO Escolaridade VALUES(8,'Fatec do Sei Lá', '2010-08-27', '2013-04-17')
+
+INSERT INTO FormacaoAcademica VALUES(1,1,3)
+INSERT INTO FormacaoAcademica VALUES(2,4,6)
+INSERT INTO FormacaoAcademica VALUES(3,6,4)
+INSERT INTO FormacaoAcademica VALUES(4,8,2)
+INSERT INTO FormacaoAcademica VALUES(5,2,8)
+INSERT INTO FormacaoAcademica VALUES(6,3,4)
+INSERT INTO FormacaoAcademica VALUES(7,6,1)
+INSERT INTO FormacaoAcademica VALUES(8,7,2)
+INSERT INTO FormacaoAcademica VALUES(9,3,4)
+INSERT INTO FormacaoAcademica VALUES(10,2,1)
+
+INSERT INTO Curriculo VALUES(1,2,'Meu Objetivo é ser o maior fullstack do brasil e do mundo, estou entrando nessa empresa com conhecimentos tecnicos para atingir meu objetivo')
+INSERT INTO Curriculo VALUES(2,3,'Estou em busca de um emprego para desenvolver minhas habilidades em JAVA')
+INSERT INTO Curriculo VALUES(3,1,'Só alcança quem começa')
+INSERT INTO Curriculo VALUES(4,6,'O dinheiro não é o problema, a falta de ideias criativas para ganha-lo que é')
+INSERT INTO Curriculo VALUES(5,7,'Até agora, tenho estado a evitar a sua inevitabilidade.')
+INSERT INTO Curriculo VALUES(6,4,'É possível, mas achamos bastante duvidoso.')
+INSERT INTO Curriculo VALUES(7,5,'As pessoas devem olhar para mim para a consistência e perseverança.')
+INSERT INTO Curriculo VALUES(8,8,'O número de combinações possíveis e consequentes utilizações parece ilimitado.')
+
+INSERT INTO CarreiraProfissional VALUES(1, 1, 'Bradesco', '2017-09-02', '2022-05-12', 'Gerente')
+INSERT INTO CarreiraProfissional VALUES(2, 7, 'Ubisoft', '2017-09-02', '2022-05-12', 'Gerente')
+INSERT INTO CarreiraProfissional VALUES(3, 8, 'Oracle', '2017-09-02', '2022-05-12', 'Gerente')
+INSERT INTO CarreiraProfissional VALUES(4, 4, 'Google', '2017-09-02', '2022-05-12', 'Gerente')
+INSERT INTO CarreiraProfissional VALUES(5, 4, 'Amazon', '2017-09-02', '2022-05-12', 'Gerente')
+INSERT INTO CarreiraProfissional VALUES(6, 5, 'Microsoft', '2017-09-02', '2022-05-12', 'Gerente')
+INSERT INTO CarreiraProfissional VALUES(7, 2, 'ChibiliKid', '2017-09-02', '2022-05-12', 'Gerente')
+INSERT INTO CarreiraProfissional VALUES(8, 3, 'Bradesco', '2017-09-02', '2022-05-12', 'Gerente')
+INSERT INTO CarreiraProfissional VALUES(9, 6, 'Bradesco', '2017-09-02', '2022-05-12', 'Gerente')
+INSERT INTO CarreiraProfissional VALUES(10, 7, 'Bradesco', '2017-09-02', '2022-05-12', 'Gerente')
+
+
+INSERT INTO Candidato VALUES(1,1,'João Fonseca de Azevedo', 'joazinho@gmail.com', null, 'Yasmin Fonseca' )
+INSERT INTO Candidato VALUES(2,2,'Roberto Caetano da Silva', 'robertinho07@gmail.com', null, 'Rosana Caetano' )
+INSERT INTO Candidato VALUES(3,7)
+INSERT INTO Candidato VALUES(4,6)
+INSERT INTO Candidato VALUES(5,4)
+INSERT INTO Candidato VALUES(6,3)
+INSERT INTO Candidato VALUES(7,8)
+INSERT INTO Candidato VALUES(8,5)
+INSERT INTO Candidato VALUES(9,)
+INSERT INTO Candidato VALUES(10,)
+
+INSERT INTO Nivel VALUES(0, 'Inexistente')
+INSERT INTO Nivel VALUES (1, 'Básico')
+INSERT INTO Nivel VALUES(2, 'Intermediário')
+INSERT INTO Nivel VALUES(3, 'Avançado')
+INSERT INTO Nivel VALUES(4, 'Especialista')
+
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('CSharp',1)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('Java', 2)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ( 'Python' ,3)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('JavaScript' ,4)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ( 'Ruby', 5)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('PHP', 6)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('MySQL', 7)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('SQLServer', 8)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('ASPnet', 9)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('Spring', 10)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('Django',11)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('NodeJS', 12)
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('React', 13)
+
+
+INSERT INTO CurriculoConhecimentos VALUES (1,1,2),(1,2,2),(1,3,1),(1,4,2)
+INSERT INTO CurriculoConhecimentos VALUES (2,1,1),(2,2,2),(2,3,1),(2,4,2)
+
+INSERT INTO SituacaoVaga VALUES (1, 'Aberto')
+INSERT INTO SituacaoVaga VALUES (2, 'Fechado')
+INSERT INTO SituacaoVaga VALUES (3, 'Suspenso')
+
+INSERT INTO Portes VALUES (1, 'Pequena')
+INSERT INTO Portes VALUES (2, 'Média')
+INSERT INTO Portes VALUES (3, 'Grande')
+
+INSERT INTO Empresa VALUES (1, 2 , '11.722.246/0001-93' , 'Ficticios para Testes SA', 'Teste')
+ 
+INSERT INTO Vagas VALUES (1 , 1 , 1, 1 , 'Estágiario', 'asdasd',NULL,NULL, 1200.50, 30, 'S', NULL, '6X2 Semanais')
+
+INSERT INTO VagasConhecimentos VALUES (1 , 1 ,2), (1 , 2 ,2), (1 , 3,2), (1 , 4,2) 
+DELETE FROM VagasConhecimentos
+INSERT INTO VagasCandidato VALUES (1,1), (1,2)
+DROP TABLE Notificacao
+CREATE TABLE Notificacao
+(
+	idNotificacao INT IDENTITY PRIMARY KEY NOT NULL,
+	idVaga INT NOT NULL,
+	idCandidato INT NOT NULL,
+	dtNotificao SMALLDATETIME NOT NULL,
+	dtLeitura SMALLDATETIME
+);
+GO
+--INSERT INTO Notificacao VALUES (1,1,1,1,GETDATE(),'SIM'), (2,1,2,1,GETDATE(),'SIM')
+
+select * from Vagas
+select * from VagasConhecimentos
+
+select * from Candidato
+select * from Curriculo
+select * from CurriculoConhecimentos
+
+select * from Notificacao
+
+ALTER TRIGGER VagaCandidatosAderentes ON VagasConhecimentos FOR INSERT
+AS
+BEGIN
+	INSERT INTO Notificacao (idVaga, idCandidato, dtNotificao)
+	SELECT DISTINCT VC.idVagas, CA.idCandidato, CURRENT_TIMESTAMP 
+	FROM CurriculoConhecimentos CC
+	INNER JOIN Candidato CA ON CC.idCurriculo = CA.idCurriculo
+	INNER JOIN inserted VC ON CC.idConhecimentos = VC.idConhecimentos AND CC.idNivel >= VC.idNivel
+END
