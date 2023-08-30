@@ -767,7 +767,11 @@ INSERT INTO Candidato VALUES(8, 5, 'Tarcísio Felizardo Lopez', 'tarsi@outlook.c
 INSERT INTO Candidato VALUES(9, 4, 'Isaque Rios Sá', 'rioslavanda2492@outlook.com', null, 'Neiva Negris Rios')
 INSERT INTO Candidato VALUES(10, 1, 'Maycon Camara Leite', 'maycontwo02@gmail.com', null, 'Emanuelle Theodoro Camara')
 
-INSERT INTO EnderecoCandidato  VALUES(1, 1, '77007-116')
+INSERT INTO EnderecoCandidato  VALUES(1, 1, '77007116', 'Rua', 'Alcantara', '354', null, 'Vila Guilherme', 'São Paulo', 'SP')
+INSERT INTO EnderecoCandidato  VALUES(2, 2, '64601203', 'Rua', 'Projetada', '28', 'Apt 13 Bloco A', 'Aerolândia', 'Picos', 'PI')
+INSERT INTO EnderecoCandidato  VALUES(3, 3, '49504462', 'Rua', 'E', '2242', null, 'Marianga', 'Salvador', 'BA')
+INSERT INTO EnderecoCandidato  VALUES(4, 4, '49504462', 'Rua', 'E', '2242', null, 'Marianga', 'Salvador', 'BA')
+
 
 INSERT INTO Nivel VALUES(0, 'Inexistente')
 INSERT INTO Nivel VALUES (1, 'Básico')
@@ -804,6 +808,8 @@ INSERT INTO Portes VALUES (3, 'Grande')
 INSERT INTO Empresa VALUES (1, 2 , '11.722.246/0001-93' , 'Ficticios para Testes SA', 'Teste')
  
 INSERT INTO Vagas VALUES (1 , 1 , 1, 1 , 'Estágiario', 'asdasd',NULL,NULL, 1200.50, 30, 'S', NULL, '6X2 Semanais')
+
+--NÂO APAGAR!
 
 INSERT INTO VagasConhecimentos VALUES (1 , 1 ,2), (1 , 2 ,2), (1 , 3,2), (1 , 4,2) 
 DELETE FROM VagasConhecimentos
