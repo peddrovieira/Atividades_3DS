@@ -1,0 +1,366 @@
+Prof Belloti
+ip: 192.168.2.193
+
+-----------------------------------------------------------------------
+IeP
+-----------------------------------------------------------------------
+
+Curso da Cisco que vamos utilizar: CCNA1
+
+enviar a conta para marcos.bellotti@etec.sp.gov.br
+
+Dispositivo Final: Host; End-Point; Cliente.
+
+REDE PONTA-A-PONTA
+
+Recomendado para empresas pequenas(não é aconselhado para uma empresa grande), fácil config, menos complexo, menor custo,
+desvantagens: nenhuma adm, nn é segura, nn é escalavel, todos podem atuar como clinets e server(serviço), deixando o desempenho lento
+
+TIPOS
+
+Dispositivos Finais: os usuáriosque usam  rede
+ex: telefone, pc, etc...
+
+Rede LAN: redes locais(hardwares ou rede local); cabeamento sem problema;
+
+Rede WAN: Rede Remota/ ser o intermediário entre 2 redes locais que estão longes (Fibra Óptica, rádio); rede lenta preço alto.
+
+
+Redes Interconectadas: São os que servem à rede/fazem a rede funcionar, fazem controle de fluxo,
+ex: roteador sem fio, Switch LAN, roteador, dispositivo de firewall
+
+...
+
+Meios físicos de uma rede existir: Cobre; Ondas de Rádio (sem fio); Luz (sem fio);
+os meios dependem da prioridade da pessoa, como alguns são melhores em distância, velocidade e dinheiro.
+
+VPN: Criar uma rede privada numa rede pública
+
+Internet: é um caso particuplar da WAN; Uma parte particular da WAN
+
+Intranet: Entrada da LAN para WAN
+
+Extranet: Extrair a Intranet...
+
+SOHO: Rede com nro limitado de hosts (rede de farmácia, padaria, ou seja uma rede com poucas máquinas )
+
+FTTH: Nome da fibra que chega em sua casa
+
+Rede Convergente: Uma rede que funde redes de computador, telefônica e...
+
+Qualidade de Serviço: Priorizar prioridades (ex: um telefonema tem mais prioridade que a internet de um pc) 
+
+
+-----------------------------------------------------------------------
+Segurança de Sistema de Informação 
+-----------------------------------------------------------------------
+
+Curso da Cisco que vamos utilizar: CCNA Security
+
+Segurança da Rede: Confidencialidade, Integridade; Disponibilidade.
+
+BYOD (Traga seu Dispositivo): Trazer seu equipamento(máquina) para algum tipo de atividade(Trabalho)
+
+TIPOS DE NUVENS
+
+Nuvens Públicas: Geralmente gratuita, são públicas e são acessíveis apenas usando internet
+
+Nuvens Privadas: Geralmnente usada por organizações ou entidades específicas, como um governo. Ela é configurada usando a rede. Ou seja uma rede particular (Data Center)
+
+Nuvens Híbridas: Que usa Nuvem pública e privada conectadas em uma única arquitetura
+
+...
+
+AMEAÇAS À SEGURANÇA
+
+Ameaças de Rede LAN: não se preocupar apenas com a sguranças externa, se preocupar tbm com ameaça internas. 
+
+algumas delas: 
+- Virus(código malicioso em execução); 
+- spyware (aplicativos com coleta de dados);
+- ataques do dia zero (ocorrem no 1 dia em que uma vulnerabilidade se toma conhecida); 
+- ataque ator de ameaça (uma pessoa mal-intensionada ataca dispositivos de usuário ou recursos de rede);
+- ataque de negação de serviço (nn rouba nada mas trava o dispositivo para o usuário nn mexer);
+
+SOlUÇÂO: Antivirus e Filtragem de firewall
+
+
+
+
+Dia 09/08
+-----------------------------------------------------------------------
+IeP
+-----------------------------------------------------------------------
+
+CABOS DE REDE
+
+Reto - Usado quando eu ligo um host ou um servidor ou um switch
+
+Cross - usado quando ligo um switch com switch
+
+...
+
+FasEthernet 0/1 = Fa 0/1
+GigabitEternet 0/1 = Gio 0/1 
+
+MDIX = faz por software a adaptaçãodo cabo reto/cross ou seja suporta tanto cabo reto quanto cross
+
+Tellnet = acesso remotamente e sem segurança
+SSH = acesso remoto e criptografico
+
+?
+
+comando para mudar o prompt para o prompt privilegiado = > enable ou ena
+comando para o modo de configuração = # conf t ou # configure terminal
+
+EX(Hierarquia pronta):
+
+modo usuário = Switch>
+modo privilegiado = Switch#
+modo de configuração global = Switch(conf)#
+
+comando para alterar o nome do host [Hostname](conf)# hostname [Nome do hostname]
+comando para colocar para o nome padrão (config)# no hostname
+
+comando para boltar pro modo anterior à hierarquia = exit
+
+comando para fazer o boot do equipamento ou reiniciar para o ultimo save(limpar rastros) = reload
+
+comando para salvar o boot = # copy running-config startup-config ou copy run start
+
+comando para ver comandos que vc pode fazer = ?
+
+comando para criação de senha ao entrar no modo privilegiado = (conf)# enable secret [senha]
+
+
+
+-----------------------------------------------------------------------
+Segurança de Sistema de Informação 
+-----------------------------------------------------------------------
+
+Para sair dos erros = Ctrl + shift + 6
+
+comando para criação de senha ao entrar no modo privilegiado = (conf)# enable secret [senha]
+
+comando para configurar o endereço de ip do switch(
+	(conf)# int vlan 1
+	(conf-if)# ip address [endereço de ip] [mascara de ip]
+	(conf-if)# no shutdown -> "subir" a porta
+)
+
+comando para configurar o acesso de telnet (
+	(conf)# line vty 0 15
+	(conf-line)# password [senha]
+	(conf-line)# login
+)
+
+comando para configurar o acesso a porta de console(
+	(conf)#line console 0
+	(conf-line)# password [senha]
+	(conf-line)# login
+)
+
+comando para botar criptografia nas senhas = (conf)# service password-encryption 
+
+comando para (conf)# banner motd $ [texto] $
+
+
+
+Dia 16/08
+-----------------------------------------------------------------------
+IeP
+-----------------------------------------------------------------------
+
+IMPORTANTE: MDM
+
+Os 3 tipos de hackers
+
+White Hat: Hackers éticos que descobrem as vulnerabilidades do sistema e informa a empresa 
+Gray Hat: Hackers 
+Black Hat:
+
+FERRAMENTAS DE HACK
+
+- crackers de senha:
+- ferramentas de hacking sem fio:
+- digitalização de rede e ferramentas de hacking:
+- ferramenta de elaboração de pacotes:
+- sniffer de pacotes:
+- detectores de rootkit(um tipo de virus que a maior parte dos antvirus não descobrem, esse virus fica dentro do boot):
+- fuzzers:
+- ferramentas forenses:
+- depuradores:
+- hackeando S.O:
+- ferramenta de criptografia:
+- ferramentas de exploração de vulnerabilidade:
+- scanner de vulnerabilidades:
+
+TIPOS DE MALWARE
+
+- Virus: é um tipo de malware que cria cópia de si mesmo em outro programa, contaminando cada programa que vc abre
+- Worm: é ptipo um virus mas ele encontra todas a vulnerabilidades do sistema 
+- Cavalo de Tróia: transporta algum malware
+- Ransomware: "Captura" seu dados/ criptografa seus dados e pega pra si
+- Spyware:
+- Adware:
+- Scareware:
+- Phishing: Enganar alguém com alguma relevância pra pessoa 
+- Rootkits:
+
+netstats -an - Exibe estatísticas de protocolo e conexões de rede TCP/IP atuais em formato numérico
+
+diferença de DoS e DDoS
+
+DoS = cria algum tipo de interrupção dos serviços de rede para usuários, dispositivos
+
+MELHOR ATAQUE = SYN Fload
+
+-----------------------------------------------------------------------
+Segurança de Sistema de Informação 
+-----------------------------------------------------------------------
+
+OQ é segurança?
+
+- Confidencialidade: Apenas pessoas autorizadas podem ter acesso a informações confidenciais
+- Intgridade: Oq eu receber de informação tem que ser oq o cara mando para mim. No 
+- Disponibilidade: Usuários devem ter acesso ao que ele é autorizado a fazer
+
+Csirt: plataforma para ver ataques cibernéticos para prevenir que aquilo ocorra com seu sistema
+
+-----------------------------------------------------------------------
+IeP
+-----------------------------------------------------------------------
+
+Protocolo = conjunto de regras, aplicadas por software, para garantir que a comunicação ocorra através
+da rede sem erros e com a menor quantidade possivel de controle(Overhead)
+								   |
+								   ----> Preferencialmente ser 0, mas isso ocorreria apenas no mundo ideal.
+
+
+Encapsulamento = tipo o envelope dos correios
+
+TROCA DE INFO NA REDE
+
+UNICAST = Mandar informaçôes para uma pessoa só
+MULTICAST = Mandar informações para um grupo específico
+BROADCAST = Mandar informações para diversas/todas as pessoas que estão na rede
+
+divisão polinomial(nal)
+
+encapsulamento e desencapsulamento
+
+-----------------------------------------------------------------------
+Segurança de Sistema de Informação 
+-----------------------------------------------------------------------
+
+DMZ = Zona desmitalizada
+
+IPS = Verifica o comportamento do tráfico de rede
+
+Firewall verifica o "crachá" da pessoa
+
+UPS =fonte de alimento Ininterrupta
+
+
+NO BREAK | Shutdown
+ 30 min  |   
+
+IaaS = Infraestrutura com serviço(ficar responsavel pelo S.O, software que constroi a aplicatação e a própria aplicação.)
+
+PaaS = Properties?
+
+SaaS = Services?
+
+
+SEGURANÇA EXTRAS
+-----------------------------------------------------------------------
+
+Comandos:
+security password min-lenght 
+login block-for [tempo de bloqueio do banco (em s)] attempts [quantidade de tentativa] within [Em quanto tempo as tentativas (em s)]
+Exec-timeout [Decide o tempo que fecha o prompt (em seg)]
+
+Comandos de criação de usuario:
+(config)# username [nome do usuario] [tipo de criptografia da senha] [senha do usuario]
+(config)# username privlege [numero do privilegio (0-15 sendo o 15 o melhor)]		
+	|
+	|
+	|=> para usar o username colocar local depois do comando login
+
+
+Criterios para Criptografia:
+-----------------------------------------------------------------------
+
+secret é para hash 5
+Password é para hash 7
+
+
+Para ver a versão:
+-----------------------------------------------------------------------
+
+ # show version
+	
+
+Comando para colocar IP permetido
+-----------------------------------------------------------------------
+(config)# ip acess-list standard PERMIT-ADMIN
+           remark Permit only Administrative hosts
+           permit [numero do ip para ter permissao]
+
+
+SSH
+-----------------------------------------------------------------------
+Requisitos: Ter o Hostname
+	    Ter nome de dominio
+	comando => (config)# ip domain-name [nome do dominio]
+		   (config)# ip ssh version 2
+				 Gerar chave de criptografia
+	comando => (config)# crypto key generate rsa general-keys modulus 4096
+
+
+ (config)# ip ssh authentication-retries [numero de quantidade possiveis]
+	   
+ (config)# transport input ssh 
+	|
+	=> Fecha o Telnet
+		
+(config)# exec-timeout 5 30
+	|
+	=> Ele limita o tempo que a pessoa pode ficar colocando a senha
+
+
+Modelo de referencia de protocolos
+______________________________________________________
+|Aplicação	|	|			      |
+|_______________|	|			      |
+|Apresentação	|	|	Aplicação	      |
+|_______________|	|			      |
+|Sessão		|	|			      |	
+|_______________|_______|_____________________________|
+|Transporte	|	|	Transporte	      |	
+|_______________|_______|_____________________________|
+|Rede		|	|	Internet 	      |
+|_______________|_______|_____________________________|
+|Enlece		|       |			      |
+|_______________|       |	Acesso a rede	      | 
+|Fisica		|       |			      |	
+|_______________|_______|_____________________________|
+
+
+AULA 30/08
+-----------------------------------------------------------------------
+IeP
+-----------------------------------------------------------------------
+
+DNS -> Serve como converter o nome do dominio pro IP e vice-versa
+DHCP -> Da o IP, Mask, DNS e tudo mais da máquina
+IPV4 -> Até 32 bits (2^32)
+IPV6 -> Até 128 bits (2^128)
+IP Privado -> 10.    ou        192.168           ou        172.16 até o 172.31
+ICMP -> Gerenciamento da camada de Internet
+ARP -> Protocolo que amarra o IP ao Mac Adress e vice-versa
+
+
+-----------------------------------------------------------------------
+Segurança de Sistema de Informação 
+-----------------------------------------------------------------------
