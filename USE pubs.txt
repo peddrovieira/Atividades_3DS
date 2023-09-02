@@ -770,8 +770,13 @@ INSERT INTO Candidato VALUES(10, 1, 'Maycon Camara Leite', 'maycontwo02@gmail.co
 INSERT INTO EnderecoCandidato  VALUES(1, 1, '77007116', 'Rua', 'Alcantara', '354', null, 'Vila Guilherme', 'São Paulo', 'SP')
 INSERT INTO EnderecoCandidato  VALUES(2, 2, '64601203', 'Rua', 'Projetada', '28', 'Apt 13 Bloco A', 'Aerolândia', 'Picos', 'PI')
 INSERT INTO EnderecoCandidato  VALUES(3, 3, '49504462', 'Rua', 'E', '2242', null, 'Marianga', 'Salvador', 'BA')
-INSERT INTO EnderecoCandidato  VALUES(4, 4, '49504462', 'Rua', 'E', '2242', null, 'Marianga', 'Salvador', 'BA')
-
+INSERT INTO EnderecoCandidato  VALUES(4, 4, '77020004', 'Avenida', 'Itau', '34', null, 'Vila Lobos', 'São Sebastião', 'MG')
+INSERT INTO EnderecoCandidato  VALUES(5, 5, '69911202', 'Rua', 'Japão Liberdade', '34', '2º Andar', 'Liberdade', 'São Paulo', 'SP')
+INSERT INTO EnderecoCandidato  VALUES(6, 6, '77804170', 'Avenida', 'Roraima', '4343', '5º Andar, Bloco C', 'São Joaquin', 'Lima Campos', 'RJ')
+INSERT INTO EnderecoCandidato  VALUES(7, 7, '69908070', 'Rua', 'José do Rio Preto', '45', null, 'Santo Antônio', 'Aracaju', 'SE')
+INSERT INTO EnderecoCandidato  VALUES(8, 8, '65140970', 'Rua', 'Claudio Batista 122', '122', '5º Andar, Bloco C', 'Novo Paraíso', 'Aracaju', 'SE')
+INSERT INTO EnderecoCandidato  VALUES(9, 9, '15047224', 'Rua', 'Alberto Belintani', '734', null, 'São Joaquin', 'Lima Campos', 'RJ')
+INSERT INTO EnderecoCandidato  VALUES(10, 10, '97578146', 'Rua', 'João Flores da Cunha', '666', null, 'Wilson', 'Santana do Livramento', 'RS')
 
 INSERT INTO Nivel VALUES(0, 'Inexistente')
 INSERT INTO Nivel VALUES (1, 'Básico')
