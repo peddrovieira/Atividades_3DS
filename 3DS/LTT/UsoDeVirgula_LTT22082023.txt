@@ -1,0 +1,64 @@
+Aula dia 22/08
+----------------------------------------------------------------------------
+LTT
+----------------------------------------------------------------------------
+COMO USAR A VÍRGULA:
+
+* Separar elementos que vc poderia listar. ex:
+	- João
+	- Maria
+	- Ricardo
+	- Pedro
+	- Augusto
+
+João, Maria, Ricardo, Pedro e Augusto vão almoçar
+
+
+* Use vírgula para separar explicações q estão no meio da frase. ex:
+
+	Antônio, o moco que traz o pao, nn veio hj (oposto)
+	Eu e você, que somos amigos, não devemos brigar
+
+
+* Separar o lugar, o tempo ou o modo no inicio da frase. Ex:
+
+	- Lá fora, o sol está de rachar
+	- Semana passada, todos vieram jantar aqui em casa.
+	- De um modo geral, não gostamos de pessoas estranhas.
+
+
+* Há casos que a vírgula é opcional ex:
+
+	- Geralmente, gosto de almoçar no shopping
+	  Geralmente gosto de almoçar no shopping
+	- Depois, vamos sair para jantar
+	  Depois vamos sair para jantar
+	- Semana passada todos vieram jantar aqui em casa
+
+* Separar orações independentes
+
+	- O chefe pediu o relatório, mas está muito tarde
+	  O chefe pediu o relatório, entretanto está muito tarde
+
+* Usar vírgula antes do E (casos especificos)
+
+	- O sol já ia fraco, e a tarde era amena.
+	- A mulher morreu, e cada um dos filhos procurou seu destino
+
+__________________________________________________________________________________________________________________
+
+DESAFIO SOBRE VÍRGULA E PONTUAÇÂO 
+Reescreva o testamento 4 vezes, de forma que cada uma delas você deve dar a heranbça pra alguém diferente.
+Frase: Deixo minha fortuna a meu sobrinho não à minha irmã jamais pagarei a conta do alfaiate nada aos pobres
+
+
+Deixo minha fortuna a meu sobrinho, não à minha irmã, jamais pagarei a conta do alfaiate, nada aos pobres. [Sobrinho]
+
+Deixo minha fortuna, a meu sobrinho não, à minha irmã, jamais pagarei a conta do alfaiate, nada aos pobres. [Irmã]
+
+Deixo minha fortuna, a meu sobrinho não, à minha irmã jamais, pagarei a conta do alfaiate, nada aos pobres. [Alfaite]
+
+Deixo minha fortuna, a meu sobrinho? não, à minha irmã? jamais, pagarei a conta do alfaiate? nada, aos pobres! [Pobres]
+
+__________________________________________________________________________________________________________________
+
