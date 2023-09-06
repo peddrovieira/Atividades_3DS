@@ -465,12 +465,50 @@ INSERT INTO BeneficioVagas VALUES
     (15, 1), (15, 13);
 
     
+INSERT INTO VagasCandidato VALUES
+    (1, 1), (1, 3), (1, 6),
+    (2, 2), (2, 7), (2, 4),
+    (3, 3), (3, 2), (3, 10),
+    (4, 4), (4, 9), (4, 15),
+    (5, 5), (5, 6), (5, 3),
+    (6, 6), (6, 5), (6, 9),
+    (7, 7), (7, 10), (7, 8),
+    (8, 8), (8, 12), (8, 2),
+    (9, 9), (9, 4), (9, 1),
+    (10, 8), (10, 10), (10, 12),
+	(11, 13), (11, 7),
+    (12, 11), (12, 14),
+    (11, 11), (13, 5),
+    (12, 12),
+    (13, 13), (13, 1),
+    (14, 14), (14, 11),
+    (15, 15), (15, 13);  
+
+
 INSERT INTO Nivel VALUES 
 	(0, 'Inexistente'),
 	(1, 'Básico'),
 	(2, 'Intermediário'),
 	(3, 'Avançado'),
 	(4, 'Especialista');
+
+
+INSERT INTO Idiomas VALUES
+    (1, 1, 'Inglês'),
+    (2, 2, 'Espanhol'),
+    (3, 3, 'Francês'),
+    (4, 4, 'Alemão'),
+    (5, 5, 'Italiano'),
+    (6, 1, 'Português'),
+    (7, 2, 'Japonês'),
+    (8, 3, 'Chinês'),
+    (9, 4, 'Russo'),
+    (10, 5, 'Árabe'),
+    (11, 1, 'Coreano'),
+    (12, 2, 'Holandês'),
+    (13, 3, 'Sueco'),
+    (14, 4, 'Dinamarquês'),
+    (15, 5, 'Finlandês');
 
 
 INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES 
