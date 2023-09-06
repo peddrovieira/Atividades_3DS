@@ -395,14 +395,15 @@ INSERT INTO  EnderecoEmpresa VALUES (1, 1, '19816-070', 'Rua', 'José Antônio F
 									(10, 10, '39385-971', 'Praça', 'Tiradentes', '136', null, 'Centro', 'Vista Alegre', 'MG');
 
 
-INSERT INTO Beneficio VALUES (1, 'Plano de Saúde'),
-							 (2, 'Vale-Alimentação'),
-							 (3, 'Vale-Transporte'),
-							 (4, 'Auxílio Creche'),
-							 (5, 'Bônus Anual'),
-							 (6, 'Assistência Odontológica'),
-							 (7, 'Home Office Flexível'),
-							 (8, 'Programa de Desenvolvimento Profissional'),
+INSERT INTO Beneficio VALUES 
+	(1, 'Plano de Saúde'),
+(2, 'Vale-Alimentação'),
+(3, 'Vale-Transporte'),
+(4, 'Auxílio Creche'),
+(5, 'Bônus Anual'),
+(6, 'Assistência Odontológica'),
+(7, 'Home Office Flexível'),
+(8, 'Programa de Desenvolvimento Profissional'),
 							 (9, 'Horário Flexível'),
 							 (10, 'Participação nos Lucros e Resultados (PLR)'),
 							 (11, 'Dias de Férias Adicionais'),
@@ -412,11 +413,30 @@ INSERT INTO Beneficio VALUES (1, 'Plano de Saúde'),
 							 (15, 'Auxílio-Educação');
 
 
-INSERT INTO Nivel VALUES(0, 'Inexistente')
-INSERT INTO Nivel VALUES (1, 'Básico')
-INSERT INTO Nivel VALUES(2, 'Intermediário')
-INSERT INTO Nivel VALUES(3, 'Avançado')
-INSERT INTO Nivel VALUES(4, 'Especialista')
+INSERT INTO Vagas VALUES
+    (1, 1, 1, 1, 'Desenvolvedor Web', 'Descrição da vaga 1', '2023-09-05 08:00:00', '2023-09-10 17:00:00', 5000.00, 40, 'Cidade A', 0.85, 'Segunda a Sexta - 9h às 18h'),
+    (2, 2, 2, 2, 'Analista de Marketing', 'Descrição da vaga 2', '2023-09-06 09:00:00', '2023-09-11 18:00:00', 4500.00, 35, 'Cidade B', 0.90, 'Segunda a Sexta - 10h às 19h'),
+    (3, 3, 1, 3, 'Engenheiro Civil', 'Descrição da vaga 3', '2023-09-07 10:00:00', '2023-09-12 19:00:00', 6000.00, 45, 'Cidade C', 0.80, 'Segunda a Sexta - 8h às 17h'),
+    (4, 4, 3, 4, 'Contador', 'Descrição da vaga 4', '2023-09-08 11:00:00', '2023-09-13 20:00:00', 5500.00, 38, 'Cidade D', 0.88, 'Segunda a Sexta - 9h às 18h'),
+    (5, 5, 1, 5, 'Enfermeiro', 'Descrição da vaga 5', '2023-09-09 12:00:00', '2023-09-14 21:00:00', 5200.00, 37, 'Cidade E', 0.92, 'Segunda a Sexta - 8h às 17h'),
+    (6, 1, 2, 6, 'Designer Gráfico', 'Descrição da vaga 6', '2023-09-10 13:00:00', '2023-09-15 22:00:00', 4800.00, 30, 'Cidade F', 0.86, 'Segunda a Sexta - 10h às 19h'),
+    (7, 2, 3, 7, 'Psicólogo', 'Descrição da vaga 7', '2023-09-11 14:00:00', '2023-09-16 23:00:00', 5200.00, 32, 'Cidade G', 0.89, 'Segunda a Sexta - 9h às 18h'),
+    (8, 3, 1, 8, 'Advogado', 'Descrição da vaga 8', '2023-09-12 15:00:00', '2023-09-17 10:00:00', 5800.00, 42, 'Cidade H', 0.84, 'Segunda a Sexta - 8h às 17h'),
+    (9, 4, 2, 9, 'Analista Financeiro', 'Descrição da vaga 9', '2023-09-13 16:00:00', '2023-09-18 11:00:00', 5400.00, 36, 'Cidade I', 0.87, 'Segunda a Sexta - 9h às 18h'),
+    (10, 5, 3, 10, 'Médico', 'Descrição da vaga 10', '2023-09-14 17:00:00', '2023-09-19 12:00:00', 6200.00, 44, 'Cidade J', 0.91, 'Segunda a Sexta - 8h às 17h'),
+    (11, 1, 1, 1, 'Analista de Sistemas', 'Descrição da vaga 11', '2023-09-15 18:00:00', '2023-09-20 13:00:00', 5400.00, 39, 'Cidade A', 0.85, 'Segunda a Sexta - 9h às 18h'),
+    (12, 2, 2, 2, 'Recrutador', 'Descrição da vaga 12', '2023-09-16 19:00:00', '2023-09-21 14:00:00', 4800.00, 31, 'Cidade B', 0.90, 'Segunda a Sexta - 10h às 19h'),
+    (13, 3, 1, 3, 'Arquiteto', 'Descrição da vaga 13', '2023-09-17 20:00:00', '2023-09-22 15:00:00', 6000.00, 47, 'Cidade C', 0.80, 'Segunda a Sexta - 8h às 17h'),
+    (14, 4, 3, 4, 'Analista Contábil', 'Descrição da vaga 14', '2023-09-18 21:00:00', '2023-09-23 16:00:00', 5500.00, 40, 'Cidade D', 0.88, 'Segunda a Sexta - 9h às 18h'),
+    (15, 5, 1, 5, 'Enfermeira Pediátrica', 'Descrição da vaga 15', '2023-09-19 22:00:00', '2023-09-24 17:00:00', 5200.00, 37, 'Cidade E', 0.92, 'Segunda a Sexta - 8h às 17h');
+	
+
+INSERT INTO Nivel VALUES 
+	(0, 'Inexistente'),
+	(1, 'Básico'),
+	(2, 'Intermediário'),
+	(3, 'Avançado'),
+	(4, 'Especialista');
 
 
 INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('CSharp', 1),
@@ -430,7 +450,7 @@ INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('CSharp', 1
 																	('ASPnet', 9),
 																	('Spring', 10),	
 																	('Django', 11),
-																	('NodeJS', 12)
+																	('NodeJS', 12),
 																	('React', 13);
 
 
