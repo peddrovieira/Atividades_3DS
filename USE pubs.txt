@@ -220,7 +220,6 @@ CREATE INDEX INDEX_idNivel_Idiomas ON Idiomas (idNivel);
 
 CREATE TABLE Conhecimentos (
 	idConhecimentos INT PRIMARY KEY NOT NULL,
-	
 	nomeConhecimento VARCHAR(30) NOT NULL,
 	
 );
