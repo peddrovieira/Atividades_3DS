@@ -288,108 +288,128 @@ CREATE INDEX INDEX_idVagas_VagasIdiomas ON VagasIdiomas (idVagas);
 CREATE INDEX INDEX_idIdiomas_VagasIdiomas ON VagasIdiomas (idIdiomas);
 GO
 
-INSERT INTO Cursos VALUES(1,'Ciências da Computação', 'Sim')
-INSERT INTO Cursos VALUES(2,'Redes e Segurança', 'Sim')
-INSERT INTO Cursos VALUES(3,'Banco de Dados', 'Sim')
-INSERT INTO Cursos VALUES(4,'Excel', 'Não')
-INSERT INTO Cursos VALUES(5,'Office', 'Não')
-INSERT INTO Cursos VALUES(6,'Aprender Python', 'Sim')
-INSERT INTO Cursos VALUES(7,'Marketing Digital', 'Não')
-INSERT INTO Cursos VALUES(8,'InfraEstrutura', 'Não')
-
-INSERT INTO Escolaridade VALUES(1,'Etec Horacio Augusto da Silveira', '2023-08-22', '2023-11-22')
-INSERT INTO Escolaridade VALUES(2,'Senai', '2021-08-22', '2023-04-22')
-INSERT INTO Escolaridade VALUES(3,'Babilucho', '2025-05-35', '2023-11-22')
-INSERT INTO Escolaridade VALUES(4,'SAGA', '2018-05-06', '2019-12-06')
-INSERT INTO Escolaridade VALUES(5,'Evoloo', '2018-02-01', '2020-05-16')
-INSERT INTO Escolaridade VALUES(6,'DotDoom', '2026-01-31', '2022-12-22')
-INSERT INTO Escolaridade VALUES(7,'Pysbra', '2023-02-22', '2023-02-22')
-INSERT INTO Escolaridade VALUES(8,'Fatec do Sei Lá', '2010-08-27', '2013-04-17')
-
-INSERT INTO FormacaoAcademica VALUES(1,1,3)
-INSERT INTO FormacaoAcademica VALUES(2,4,6)
-INSERT INTO FormacaoAcademica VALUES(3,6,4)
-INSERT INTO FormacaoAcademica VALUES(4,8,2)
-INSERT INTO FormacaoAcademica VALUES(5,2,8)
-INSERT INTO FormacaoAcademica VALUES(6,3,4)
-INSERT INTO FormacaoAcademica VALUES(7,6,1)
-INSERT INTO FormacaoAcademica VALUES(8,7,2)
-INSERT INTO FormacaoAcademica VALUES(9,3,4)
-INSERT INTO FormacaoAcademica VALUES(10,2,1)
-
-INSERT INTO Curriculo VALUES(1,2,'Meu Objetivo é ser o maior fullstack do brasil e do mundo, estou entrando nessa empresa com conhecimentos tecnicos para atingir meu objetivo')
-INSERT INTO Curriculo VALUES(2,3,'Estou em busca de um emprego para desenvolver minhas habilidades em JAVA')
-INSERT INTO Curriculo VALUES(3,1,'Só alcança quem começa')
-INSERT INTO Curriculo VALUES(4,6,'O dinheiro não é o problema, a falta de ideias criativas para ganha-lo que é')
-INSERT INTO Curriculo VALUES(5,7,'Até agora, tenho estado a evitar a sua inevitabilidade.')
-INSERT INTO Curriculo VALUES(6,4,'É possível, mas achamos bastante duvidoso.')
-INSERT INTO Curriculo VALUES(7,5,'As pessoas devem olhar para mim para a consistência e perseverança.')
-INSERT INTO Curriculo VALUES(8,8,'O número de combinações possíveis e consequentes utilizações parece ilimitado.')
-
-INSERT INTO CarreiraProfissional VALUES(1, 1, 'Bradesco', '2017-09-02', '2022-05-12', 'Gerente')
-INSERT INTO CarreiraProfissional VALUES(2, 7, 'Ubisoft', '2017-09-02', '2022-05-12', 'Gerente')
-INSERT INTO CarreiraProfissional VALUES(3, 8, 'Oracle', '2017-09-02', '2022-05-12', 'Gerente')
-INSERT INTO CarreiraProfissional VALUES(4, 4, 'Google', '2017-09-02', '2022-05-12', 'Gerente')
-INSERT INTO CarreiraProfissional VALUES(5, 4, 'Amazon', '2017-09-02', '2022-05-12', 'Gerente')
-INSERT INTO CarreiraProfissional VALUES(6, 5, 'Microsoft', '2017-09-02', '2022-05-12', 'Gerente')
-INSERT INTO CarreiraProfissional VALUES(7, 2, 'ChibiliKid', '2017-09-02', '2022-05-12', 'Gerente')
-INSERT INTO CarreiraProfissional VALUES(8, 3, 'Bradesco', '2017-09-02', '2022-05-12', 'Gerente')
-INSERT INTO CarreiraProfissional VALUES(9, 6, 'Bradesco', '2017-09-02', '2022-05-12', 'Gerente')
-INSERT INTO CarreiraProfissional VALUES(10, 7, 'Bradesco', '2017-09-02', '2022-05-12', 'Gerente')
+INSERT INTO Cursos VALUES (1,'Ciências da Computação', 'Sim'),
+						  (2,'Redes e Segurança', 'Sim'),
+						  (3,'Banco de Dados', 'Sim'),
+						  (4,'Excel', 'Não'),
+						  (5,'Office', 'Não'),
+						  (6,'Aprender Python', 'Sim'),
+						  (7,'Marketing Digital', 'Não'),
+						  (8,'InfraEstrutura', 'Não');
 
 
-INSERT INTO Candidato VALUES(1, 1,'João Fonseca de Azevedo', 'joazinho@outlook.com', null, 'Yasmin Fonseca da Silva' )
-INSERT INTO Candidato VALUES(2, 2,'Roberto Caetano da Silva', 'robertinho07@gmail.com', null, 'Rosana Caetano Romero' )
-INSERT INTO Candidato VALUES(3, 7, 'Thiago Ryan Araujo', 'thiago.monster@gmail.com', null, 'Mariestela Araujo da Silva' )
-INSERT INTO Candidato VALUES(4, 6, 'Isabela Nacimento Quirino', 'isalinda@outlook.com', null, 'Giovanna Nascimento Gomes') 
-INSERT INTO Candidato VALUES(5, 4, 'Júlio Luiz Ervano Wulff', 'wolfruffus@gmail.com', null, 'Islayne Bragança Ervano')
-INSERT INTO Candidato VALUES(6, 3, 'Jane Rezende Estellet', 'ro.rezende@gmail.com', null, 'Agostinha Araujo Rezende')
-INSERT INTO Candidato VALUES(7, 8, 'Viviane Silvino Paes', 'vivi243@gmail.com', null, 'Marcy Vabo Silvino')
-INSERT INTO Candidato VALUES(8, 5, 'Tarcísio Felizardo Lopez', 'tarsi@outlook.com', null, 'Cristiane Vidal Felizardo')
-INSERT INTO Candidato VALUES(9, 4, 'Isaque Rios Sá', 'rioslavanda2492@outlook.com', null, 'Neiva Negris Rios')
-INSERT INTO Candidato VALUES(10, 1, 'Maycon Camara Leite', 'maycontwo02@gmail.com', null, 'Emanuelle Theodoro Camara')
+INSERT INTO Escolaridade VALUES (1,'Etec Horacio Augusto da Silveira', '2023-08-22', '2023-11-22'),
+							    (2,'Senai', '2021-08-22', '2023-04-22'),
+								(3,'Babilucho', '2025-05-35', '2023-11-22'),
+								(4,'SAGA', '2018-05-06', '2019-12-06'),
+								(5,'Evoloo', '2018-02-01', '2020-05-16'),
+								(6,'DotDoom', '2026-01-31', '2022-12-22'),
+								(7,'Pysbra', '2023-02-22', '2023-02-22'),
+								(8,'Fatec do Sei Lá', '2010-08-27', '2013-04-17');
 
-INSERT INTO EnderecoCandidato  VALUES(1, 1, '77007116', 'Rua', 'Alcantara', '354', null, 'Vila Guilherme', 'São Paulo', 'SP')
-INSERT INTO EnderecoCandidato  VALUES(2, 2, '64601203', 'Rua', 'Projetada', '28', 'Apt 13 Bloco A', 'Aerolândia', 'Picos', 'PI')
-INSERT INTO EnderecoCandidato  VALUES(3, 3, '49504462', 'Rua', 'E', '2242', null, 'Marianga', 'Salvador', 'BA')
-INSERT INTO EnderecoCandidato  VALUES(4, 4, '77020004', 'Avenida', 'Itau', '34', null, 'Vila Lobos', 'São Sebastião', 'MG')
-INSERT INTO EnderecoCandidato  VALUES(5, 5, '69911202', 'Rua', 'Japão Liberdade', '34', '2º Andar', 'Liberdade', 'São Paulo', 'SP')
-INSERT INTO EnderecoCandidato  VALUES(6, 6, '77804170', 'Avenida', 'Roraima', '4343', '5º Andar, Bloco C', 'São Joaquin', 'Lima Campos', 'RJ')
-INSERT INTO EnderecoCandidato  VALUES(7, 7, '69908070', 'Rua', 'José do Rio Preto', '45', null, 'Santo Antônio', 'Aracaju', 'SE')
-INSERT INTO EnderecoCandidato  VALUES(8, 8, '65140970', 'Rua', 'Claudio Batista 122', '122', '5º Andar, Bloco C', 'Novo Paraíso', 'Aracaju', 'SE')
-INSERT INTO EnderecoCandidato  VALUES(9, 9, '15047224', 'Rua', 'Alberto Belintani', '734', null, 'São Joaquin', 'Lima Campos', 'RJ')
-INSERT INTO EnderecoCandidato  VALUES(10, 10, '97578146', 'Rua', 'João Flores da Cunha', '666', null, 'Wilson', 'Santana do Livramento', 'RS')
 
-INSERT INTO Portes VALUES (1, 'Pequena')
-INSERT INTO Portes VALUES (2, 'Média')
-INSERT INTO Portes VALUES (3, 'Grande')
+INSERT INTO FormacaoAcademica VALUES (1,1,3),
+									 (2,4,6),
+									 (3,6,4),
+									 (4,8,2),
+									 (5,2,8),
+									 (6,3,4),
+									 (7,6,1),
+									 (8,7,2),
+									 (9,3,4),
+									 (10,2,1);
 
-INSERT INTO Empresa VALUES (1, 2, '11.722.246/0001-93', 'suportes@testes.com', 'Ficticios para Testes SA', 'Teste')
-INSERT INTO Empresa VALUES (2, 1, '07.476.034/0001-04', 'edson@marciolimpeza.com', 'Edson e Márcio Limpeza Ltda', 'Edcios Limpezas')
-INSERT INTO Empresa VALUES (3, 2, '78.311.160/0001-49', 'clara@otavioassessoria.com', 'Clara e Otávio Assessoria Jurídica ME', 'Acessoria Jurídica do Salvador')
-INSERT INTO Empresa VALUES (4, 3, '66.267.347/0001-03', 'daiane@pedrocontabil.com', 'Daiane e Pedro Contábil Ltda', 'Remus Contabil')
-INSERT INTO Empresa VALUES (5, 1, '55.116.850/0001-41', 'malu@renancasanoturna.com', 'Malu e Renan Casa Noturna Ltda', 'The Noitada Malunan')
-INSERT INTO Empresa VALUES (6, 3, '87.356.417/0001-70', 'elias@mateusinformatica.com', 'Elias e Mateus Informática Ltda', 'Eltias Tech')
-INSERT INTO Empresa VALUES (7, 1, '07.139.029/0001-06', 'lorenzo@rafaelafotografias.com', 'Lorenzo e Rafaela Fotografias Ltda', 'Photorela')
-INSERT INTO Empresa VALUES (8, 2, '89.150.471/0001-90', 'manoel@alanaautomoveis.com', 'Manoel e Alana Locações de Automóveis Ltda', 'Manoel Automóveis')
-INSERT INTO Empresa VALUES (9, 2, '21.799.677/0001-01', 'benjamin@isabelfinanceira.com', 'Benjamin e Isabel Consultoria Financeira ME', 'Benj&Isa Finaceiros')
-INSERT INTO Empresa VALUES (10, 3, '53.034.779/0001-22', 'emily@giovannaautomoveis.com', 'Emily e Giovanna Locações de Automóveis ME', 'Metrono Auto')
 
-INSERT INTO  EnderecoEmpresa VALUES (1, 1, '19816-070', 'Rua', 'José Antônio Ferreira', '970', '2º Andar', 'Vila Ouro Verde', 'Assis', 'SP')
-INSERT INTO  EnderecoEmpresa VALUES (2, 2, '09403-120', 'Rua', 'Alvorada', '613', null, 'Aliança', 'Ribeirão Pires', 'SP')
-INSERT INTO  EnderecoEmpresa VALUES (3, 3, '09390-300', 'Rua', 'João Gianoni', '367', null, 'Jardim Cerqueira Leite', 'Mauá', 'SP')
-INSERT INTO  EnderecoEmpresa VALUES (4, 4, '13848-632', 'Rua', 'Yumiko Matsuda Kurimoto', '695', '3º andar', 'Parque Residencial Nova Canaã', 'Mogi Guaçu', 'SP' )
-INSERT INTO  EnderecoEmpresa VALUES (5, 5, '82700-250', 'Rua', 'Jean Jacques Rousseau', '1132', null, 'Barreirinha', 'Curitiba', 'PR')
-INSERT INTO  EnderecoEmpresa VALUES (6, 6, '59628-150', 'Rua', 'Nono Rosado', '343', '1º Andar', 'Alto de São Manoel', 'Mossoró', 'RN')
-INSERT INTO  EnderecoEmpresa VALUES (7, 7, '59133-080', 'Rua', 'da Agulha', '864', null, 'Pajuçara', 'Natal', 'RN')
-INSERT INTO  EnderecoEmpresa VALUES (8, 8, '49043-040', 'Rua', 'General João Augusto dos Reis', '185', null, 'São Conrado', 'Aracaju', 'SE')
-INSERT INTO  EnderecoEmpresa VALUES (9, 9, '69900-007', 'Travessa', 'Feijó', '2382', '2º Andar', 'Base', 'Rio Branco', 'AC')
-INSERT INTO  EnderecoEmpresa VALUES (10, 10, '39385-971', 'Praça', 'Tiradentes', '136', null, 'Centro', 'Vista Alegre', 'MG')
+INSERT INTO Curriculo VALUES (1,2,'Meu Objetivo é ser o maior fullstack do brasil e do mundo, estou entrando nessa empresa com conhecimentos tecnicos para atingir meu objetivo'),
+							 (2,3,'Estou em busca de um emprego para desenvolver minhas habilidades em JAVA'),
+							 (3,1,'Só alcança quem começa'),
+							 (4,6,'O dinheiro não é o problema, a falta de ideias criativas para ganha-lo que é'),
+							 (5,7,'Até agora, tenho estado a evitar a sua inevitabilidade.'),
+							 (6,4,'É possível, mas achamos bastante duvidoso.'),
+							 (7,5,'As pessoas devem olhar para mim para a consistência e perseverança.'),
+							 (8,8,'O número de combinações possíveis e consequentes utilizações parece ilimitado.');
 
-INSERT INTO Beneficio VALUES (1, 'Vale Transporte')
-INSERT INTO Beneficio VALUES (2, 'Vale Refeição')
-INSERT INTO Beneficio VALUES (3, 'Férias Adiantadas')
-INSERT INTO Beneficio VALUES (4, '')
+
+INSERT INTO CarreiraProfissional VALUES (1, 1, 'Bradesco', '2017-09-02', '2022-05-12', 'Gerente'),
+										(2, 7, 'Ubisoft', '2017-09-02', '2022-05-12', 'Gerente'),
+										(3, 8, 'Oracle', '2017-09-02', '2022-05-12', 'Gerente'),
+										(4, 4, 'Google', '2017-09-02', '2022-05-12', 'Gerente'),
+										(5, 4, 'Amazon', '2017-09-02', '2022-05-12', 'Gerente'),
+										(6, 5, 'Microsoft', '2017-09-02', '2022-05-12', 'Gerente'),
+										(7, 2, 'ChibiliKid', '2017-09-02', '2022-05-12', 'Gerente'),
+										(8, 3, 'Bradesco', '2017-09-02', '2022-05-12', 'Gerente'),
+										(9, 6, 'Bradesco', '2017-09-02', '2022-05-12', 'Gerente'),
+										(10, 7, 'Bradesco', '2017-09-02', '2022-05-12', 'Gerente');
+
+
+INSERT INTO Candidato VALUES (1, 1,'João Fonseca de Azevedo', 'joazinho@outlook.com', null, 'Yasmin Fonseca da Silva' ),
+							 (2, 2,'Roberto Caetano da Silva', 'robertinho07@gmail.com', null, 'Rosana Caetano Romero' ),
+							 (3, 7, 'Thiago Ryan Araujo', 'thiago.monster@gmail.com', null, 'Mariestela Araujo da Silva' ),
+							 (4, 6, 'Isabela Nacimento Quirino', 'isalinda@outlook.com', null, 'Giovanna Nascimento Gomes'), 
+							 (5, 4, 'Júlio Luiz Ervano Wulff', 'wolfruffus@gmail.com', null, 'Islayne Bragança Ervano'),
+							 (6, 3, 'Jane Rezende Estellet', 'ro.rezende@gmail.com', null, 'Agostinha Araujo Rezende'),
+							 (7, 8, 'Viviane Silvino Paes', 'vivi243@gmail.com', null, 'Marcy Vabo Silvino'),
+							 (8, 5, 'Tarcísio Felizardo Lopez', 'tarsi@outlook.com', null, 'Cristiane Vidal Felizardo'),
+							 (9, 4, 'Isaque Rios Sá', 'rioslavanda2492@outlook.com', null, 'Neiva Negris Rios'),
+							 (10, 1, 'Maycon Camara Leite', 'maycontwo02@gmail.com', null, 'Emanuelle Theodoro Camara');
+
+
+INSERT INTO EnderecoCandidato VALUES (1, 1, '77007116', 'Rua', 'Alcantara', '354', null, 'Vila Guilherme', 'São Paulo', 'SP'),
+									 (2, 2, '64601203', 'Rua', 'Projetada', '28', 'Apt 13 Bloco A', 'Aerolândia', 'Picos', 'PI'),
+									 (3, 3, '49504462', 'Rua', 'E', '2242', null, 'Marianga', 'Salvador', 'BA'),
+									 (4, 4, '77020004', 'Avenida', 'Itau', '34', null, 'Vila Lobos', 'São Sebastião', 'MG'),
+									 (5, 5, '69911202', 'Rua', 'Japão Liberdade', '34', '2º Andar', 'Liberdade', 'São Paulo', 'SP'),
+									 (6, 6, '77804170', 'Avenida', 'Roraima', '4343', '5º Andar, Bloco C', 'São Joaquin', 'Lima Campos', 'RJ'),
+									 (7, 7, '69908070', 'Rua', 'José do Rio Preto', '45', null, 'Santo Antônio', 'Aracaju', 'SE'),
+									 (8, 8, '65140970', 'Rua', 'Claudio Batista 122', '122', '5º Andar, Bloco C', 'Novo Paraíso', 'Aracaju', 'SE'),
+									 (9, 9, '15047224', 'Rua', 'Alberto Belintani', '734', null, 'São Joaquin', 'Lima Campos', 'RJ'),
+									 (10, 10, '97578146', 'Rua', 'João Flores da Cunha', '666', null, 'Wilson', 'Santana do Livramento', 'RS');
+
+
+INSERT INTO Portes VALUES (1, 'Pequena'),
+						  (2, 'Média'),
+						  (3, 'Grande');
+
+
+INSERT INTO Empresa VALUES (1, 2, '11.722.246/0001-93', 'suportes@testes.com', 'Ficticios para Testes SA', 'Teste'),
+						   (2, 1, '07.476.034/0001-04', 'edson@marciolimpeza.com', 'Edson e Márcio Limpeza Ltda', 'Edcios Limpezas'),
+						   (3, 2, '78.311.160/0001-49', 'clara@otavioassessoria.com', 'Clara e Otávio Assessoria Jurídica ME', 'Acessoria Jurídica do Salvador'),
+						   (4, 3, '66.267.347/0001-03', 'daiane@pedrocontabil.com', 'Daiane e Pedro Contábil Ltda', 'Remus Contabil'),
+						   (5, 1, '55.116.850/0001-41', 'malu@renancasanoturna.com', 'Malu e Renan Casa Noturna Ltda', 'The Noitada Malunan'),
+						   (6, 3, '87.356.417/0001-70', 'elias@mateusinformatica.com', 'Elias e Mateus Informática Ltda', 'Eltias Tech'),
+						   (7, 1, '07.139.029/0001-06', 'lorenzo@rafaelafotografias.com', 'Lorenzo e Rafaela Fotografias Ltda', 'Photorela'),
+						   (8, 2, '89.150.471/0001-90', 'manoel@alanaautomoveis.com', 'Manoel e Alana Locações de Automóveis Ltda', 'Manoel Automóveis'),
+						   (9, 2, '21.799.677/0001-01', 'benjamin@isabelfinanceira.com', 'Benjamin e Isabel Consultoria Financeira ME', 'Benj&Isa Finaceiros'),
+						   (10, 3, '53.034.779/0001-22', 'emily@giovannaautomoveis.com', 'Emily e Giovanna Locações de Automóveis ME', 'Metrono Auto');
+
+
+INSERT INTO  EnderecoEmpresa VALUES (1, 1, '19816-070', 'Rua', 'José Antônio Ferreira', '970', '2º Andar', 'Vila Ouro Verde', 'Assis', 'SP'),
+									(2, 2, '09403-120', 'Rua', 'Alvorada', '613', null, 'Aliança', 'Ribeirão Pires', 'SP'),
+									(3, 3, '09390-300', 'Rua', 'João Gianoni', '367', null, 'Jardim Cerqueira Leite', 'Mauá', 'SP'),
+									(4, 4, '13848-632', 'Rua', 'Yumiko Matsuda Kurimoto', '695', '3º andar', 'Parque Residencial Nova Canaã', 'Mogi Guaçu', 'SP' ),
+									(5, 5, '82700-250', 'Rua', 'Jean Jacques Rousseau', '1132', null, 'Barreirinha', 'Curitiba', 'PR'),
+									(6, 6, '59628-150', 'Rua', 'Nono Rosado', '343', '1º Andar', 'Alto de São Manoel', 'Mossoró', 'RN'),
+									(7, 7, '59133-080', 'Rua', 'da Agulha', '864', null, 'Pajuçara', 'Natal', 'RN'),
+									(8, 8, '49043-040', 'Rua', 'General João Augusto dos Reis', '185', null, 'São Conrado', 'Aracaju', 'SE'),
+									(9, 9, '69900-007', 'Travessa', 'Feijó', '2382', '2º Andar', 'Base', 'Rio Branco', 'AC'),
+									(10, 10, '39385-971', 'Praça', 'Tiradentes', '136', null, 'Centro', 'Vista Alegre', 'MG');
+
+
+INSERT INTO Beneficio VALUES (1, 'Plano de Saúde'),
+							 (2, 'Vale-Alimentação'),
+							 (3, 'Vale-Transporte'),
+							 (4, 'Auxílio Creche'),
+							 (5, 'Bônus Anual'),
+							 (6, 'Assistência Odontológica'),
+							 (7, 'Home Office Flexível'),
+							 (8, 'Programa de Desenvolvimento Profissional'),
+							 (9, 'Horário Flexível'),
+							 (10, 'Participação nos Lucros e Resultados (PLR)'),
+							 (11, 'Dias de Férias Adicionais'),
+							 (12, 'Seguro de Vida'),
+							 (13, 'Ginástica Laboral'),
+							 (14, 'Café da Manhã Grátis'),
+							 (15, 'Auxílio-Educação');
 
 
 INSERT INTO Nivel VALUES(0, 'Inexistente')
@@ -398,29 +418,30 @@ INSERT INTO Nivel VALUES(2, 'Intermediário')
 INSERT INTO Nivel VALUES(3, 'Avançado')
 INSERT INTO Nivel VALUES(4, 'Especialista')
 
-INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('CSharp',1)
-INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('Java', 2)
-INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ( 'Python' ,3)
-INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('JavaScript' ,4)
-INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ( 'Ruby', 5)
-INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('PHP', 6)
-INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('MySQL', 7)
-INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('SQLServer', 8)
-INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('ASPnet', 9)
-INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('Spring', 10)
-INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('Django',11)
-INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('NodeJS', 12)
-INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('React', 13)
+
+INSERT INTO Conhecimentos (nomeConhecimento,idConhecimentos) VALUES ('CSharp', 1),
+																	('Java', 2),
+																	('Python', 3),
+																	('JavaScript', 4),
+																	('Ruby', 5),
+																	('PHP', 6),
+																	('MySQL', 7),
+																	('SQLServer', 8),
+																	('ASPnet', 9),
+																	('Spring', 10),	
+																	('Django', 11),
+																	('NodeJS', 12)
+																	('React', 13);
 
 
-INSERT INTO CurriculoConhecimentos VALUES (1,1,2),(1,2,2),(1,3,1),(1,4,2)
-INSERT INTO CurriculoConhecimentos VALUES (2,1,1),(2,2,2),(2,3,1),(2,4,2)
+INSERT INTO CurriculoConhecimentos VALUES (1,1,2),(1,2,2),(1,3,1),(1,4,2),
+										  (2,1,1),(2,2,2),(2,3,1),(2,4,2);
 
-INSERT INTO SituacaoVaga VALUES (1, 'Aberto')
-INSERT INTO SituacaoVaga VALUES (2, 'Fechado')
-INSERT INTO SituacaoVaga VALUES (3, 'Suspenso')
+
+INSERT INTO SituacaoVaga VALUES (1, 'Aberto'),
+								(2, 'Fechado'),
+								(3, 'Suspenso');
  
-INSERT INTO Vagas VALUES (1 , 1 , 1, 1 , 'Estágiario', 'asdasd',NULL,NULL, 1200.50, 30, 'S', NULL, '6X2 Semanais')
 
 --NÂO APAGAR!
 
