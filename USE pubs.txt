@@ -310,27 +310,28 @@ INSERT INTO Escolaridade VALUES
 	(8,'Fatec do Sei Lá', '2010-08-27', '2013-04-17');
 
 
-INSERT INTO FormacaoAcademica VALUES 
-	(1,1,3),
-	(2,4,6),
-	(3,6,4),
-	(4,8,2),
-	(5,2,8),
-	(6,3,4),
-	(7,6,1),
-	(8,7,2),
-	(9,3,4),
-	(10,2,1);
+INSERT INTO FormacaoAcademica VALUES (1,1,1, '2005-08-02', '2007-11-28')
+INSERT INTO FormacaoAcademica VALUES (2,2,2, '2017-05-02', '2029-05-08')
+INSERT INTO FormacaoAcademica VALUES (3,3,3, '2008-02-12', '2013-05-23')
+INSERT INTO FormacaoAcademica VALUES (4,4,4, '2020-01-28', '2022-12-02')
+INSERT INTO FormacaoAcademica VALUES (5,5,5, '2017-06-05', '2019-05-24')
+INSERT INTO FormacaoAcademica VALUES (6,6,6, '2020-03-23', '2020-09-12')
+INSERT INTO FormacaoAcademica VALUES (7,7,7, '2', '')
+INSERT INTO FormacaoAcademica VALUES (8,8,8)
+INSERT INTO FormacaoAcademica VALUES (9,9,9)
+INSERT INTO FormacaoAcademica VALUES (10,10,10)
+
 
 
 INSERT INTO Curriculo VALUES (1,1,'Meu Objetivo é ser o maior fullstack do brasil e do mundo, estou entrando nessa empresa com conhecimentos tecnicos para atingir meu objetivo', '2022-08-25','2023-01-14'),
 INSERT INTO Curriculo VALUES (2,2,'Estou em busca de um emprego para desenvolver minhas habilidades em JAVA', '2022-12-27', '2023-06-27'),
-INSERT INTO Curriculo VALUES (3,3,'Só alcança quem começa', ''),
-INSERT INTO Curriculo VALUES (4,4,'O dinheiro não é o problema, a falta de ideias criativas para ganha-lo que é'),
-INSERT INTO Curriculo VALUES (5,5,'Até agora, tenho estado a evitar a sua inevitabilidade.'),
-INSERT INTO Curriculo VALUES (6,6,'É possível, mas achamos bastante duvidoso.'),
-INSERT INTO Curriculo VALUES (7,7,'As pessoas devem olhar para mim para a consistência e perseverança.'),
-INSERT INTO Curriculo VALUES (8,8,'O número de combinações possíveis e consequentes utilizações parece ilimitado.');
+INSERT INTO Curriculo VALUES (3,3,'Só alcança quem começa', '2014-06-22', '2023-09-12'),
+INSERT INTO Curriculo VALUES (4,4,'O dinheiro não é o problema, a falta de ideias criativas para ganha-lo que é', '2012-02-28', '2022-11-02'),
+INSERT INTO Curriculo VALUES (5,5,'Até agora, tenho estado a evitar a sua inevitabilidade.', '2015-05-23', '2023-08-27'),
+INSERT INTO Curriculo VALUES (6,6,'É possível, mas achamos bastante duvidoso.', '2020-04-17', '2022-12-22'),
+INSERT INTO Curriculo VALUES (7,7,'As pessoas devem olhar para mim para a consistência e perseverança.', '2021-10-12', '2021-10-12'),
+INSERT INTO Curriculo VALUES (8,8,'O número de combinações possíveis e consequentes utilizações parece ilimitado.', '2009-07-30', '2023-06-17');
+
 
 
 
