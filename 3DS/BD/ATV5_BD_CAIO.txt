@@ -1,0 +1,41 @@
+CAIO QUIRINO DE ARAUJO 
+RM: 222064
+__________________________________________________________________________________________________
+
+
+--1º
+
+CREATE VIEW RETORNA_RANDOMICO
+AS
+SELECT RAND()*10 AS NUMERO
+GO
+
+CREATE FUNCTION MASC (@string VARCHAR(MAX), @caractere CHAR(1), @posicao INT, @qtde INT)
+RETURNS VARCHAR(MAX)
+AS 
+BEGIN
+	DECLARE @retorno VARCHAR(MAX), @posrand int
+	--IF OR WHILE
+	WHILE ISNULL(@posrand, 9999999) > LEN(@string)
+		SELECT @posrand = NUMERO from RETORNA_RANDOMICO
+
+	IF  LEN(@string) > (@posrand + @qtde)
+	BEGIN
+		SELECT @retorno = SUBSTRING(@string,1,@posrand-1) 
+		SELECT @retorno = @retorno + REPLICATE(@caractere,@qtde) 
+		SELECT @retorno = @retorno + SUBSTRING(@string, (@posrand + @qtde + 1), (LEN(@string) - (@posrand + @qtde)))
+	END
+	ELSE
+		SELECT @retorno = REPLICATE(@caractere, LEN(@string))
+
+	RETURN @retorno
+END;
+GO
+
+--2º
+
+SELECT A.RM, MASC(P.NOME + ' ' + P.SOBRENOME, '*',2,5) AS [NOME COMPLETO], MASC(P.CPF,'*',2,5), PE.CIDADE, PE.UF, C.SIGLA + '-' + C.NOME AS CURSO
+FROM PESSOAS P
+INNER JOIN ALUNOS A ON P.CODIGO = A.PESSOA
+INNER JOIN CURSOS C ON C.CODIGO = A.CURSO
+INNER JOIN PESSOAS_ENDERECOS PE ON P.CODIGO = PE.CODIGO
