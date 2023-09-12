@@ -323,15 +323,16 @@ INSERT INTO FormacaoAcademica VALUES
 	(10,2,1);
 
 
-INSERT INTO Curriculo VALUES 
-	(1,2,'Meu Objetivo é ser o maior fullstack do brasil e do mundo, estou entrando nessa empresa com conhecimentos tecnicos para atingir meu objetivo'),
-	(2,3,'Estou em busca de um emprego para desenvolver minhas habilidades em JAVA'),
-	(3,1,'Só alcança quem começa'),
-	(4,6,'O dinheiro não é o problema, a falta de ideias criativas para ganha-lo que é'),
-	(5,7,'Até agora, tenho estado a evitar a sua inevitabilidade.'),
-	(6,4,'É possível, mas achamos bastante duvidoso.'),
-	(7,5,'As pessoas devem olhar para mim para a consistência e perseverança.'),
-	(8,8,'O número de combinações possíveis e consequentes utilizações parece ilimitado.');
+INSERT INTO Curriculo VALUES (1,1,'Meu Objetivo é ser o maior fullstack do brasil e do mundo, estou entrando nessa empresa com conhecimentos tecnicos para atingir meu objetivo', '2022-08-25','2023-01-14'),
+INSERT INTO Curriculo VALUES (2,2,'Estou em busca de um emprego para desenvolver minhas habilidades em JAVA', '2022-12-27', '2023-06-27'),
+INSERT INTO Curriculo VALUES (3,3,'Só alcança quem começa', ''),
+INSERT INTO Curriculo VALUES (4,4,'O dinheiro não é o problema, a falta de ideias criativas para ganha-lo que é'),
+INSERT INTO Curriculo VALUES (5,5,'Até agora, tenho estado a evitar a sua inevitabilidade.'),
+INSERT INTO Curriculo VALUES (6,6,'É possível, mas achamos bastante duvidoso.'),
+INSERT INTO Curriculo VALUES (7,7,'As pessoas devem olhar para mim para a consistência e perseverança.'),
+INSERT INTO Curriculo VALUES (8,8,'O número de combinações possíveis e consequentes utilizações parece ilimitado.');
+
+
 
 
 INSERT INTO CarreiraProfissional VALUES 
