@@ -1,0 +1,12 @@
+Duvidas sobre o modelo do banco de Dados:
+
+1 - Por que a Entidade Escolaridade está ligada apenas a Entidade Vagas?
+2 - Por que existe o nível de Domínio na Entidade Nível, sendo que ja existe o nível mais alto de Especialista?
+3 - O funcionário da Empresa, será existente dentro da Entidade Empresa ou criará nova Entidade? Pois necessita associar as Entidades de Token para Candidato e Funcionario Empresa.
+4 - Os nome de Relacionamento utiliza o nome da chave estrangeira(FK_de onde parte_para onde vai)? Ex.: FK_Beneficio_BeneficioVaga
+5 - Por que não integra a Entidade Escolaridade para a Entidade FormacaoAcademica?
+6 - Por que existe uma chave primária concatenada na Entidade FormacaoAcademica?
+7 - A Entidade Notificação, no modelo do DBDesigner possui apenas os Atributos: idVagas,idCurriculo. Enquanto que na Trigger programada, possui e utiliza-se dos Atributos: idVaga,idCandidato,dtNotificacao. Qual das 2(duas) Entidades vai ser utilizada?
+
+
+
