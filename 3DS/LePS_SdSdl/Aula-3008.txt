@@ -317,6 +317,9 @@ Requisitos: Ter o Hostname
 				 Gerar chave de criptografia
 	comando => (config)# crypto key generate rsa general-keys modulus 4096
 
+	Switch(conf)#ip ssh time-out 30 exit
+			|
+			=> Tempo em que vai chutar a pessoa depois dela nao mexer dentro do SSH
 
  (config)# ip ssh authentication-retries [numero de quantidade possiveis]
 	   
@@ -364,3 +367,78 @@ ARP -> Protocolo que amarra o IP ao Mac Adress e vice-versa
 -----------------------------------------------------------------------
 Segurança de Sistema de Informação 
 -----------------------------------------------------------------------
+
+DNS amarra o nome com ip
+o ARP amarra ip com MAC adress
+
+
+botar senha em cada nivel de privilégio -> (conf)#enable secret level 1 [senha]
+
+dar comando(no caso aqui é reload) privilegiado para o level 5 para cima ->(conf)#privilege exec level 5 reload
+
+nn é legal trabalhar com privilégio 
+é legal trabalhar com função 
+
+ligar o switch -> (conf)# no shut
+
+
+06/09
+-----------------------------------------------------------------------
+IeP
+-----------------------------------------------------------------------
+
+Camada Física -> Cobre -> elétrico
+		 Luz -> Fibra Óptica
+		 Microondas -> sem fio
+
+Camada física -> bits ---------> destino
+			   |
+			   V
+			"Levar" 
+
+NIC -> Cartão de interface de rede
+
+
+ERROS NA CAMADA FÌSICA -> é qnd vc nn consegue determinar os bits
+
+Codificação -> é a parte q transformar os dados em bits para o transporte
+
+Sinalização -> como eu defino como eu obtive 1 e 0 (quanto mais, maior a latência/largura da banda larga)
+
+- Latência -> é o tempo necessário para os dados viajarem de um ponto a outro, incluindo atrasos.
+	Taxa de transferência -> é a medida da transferências de bit para um local
+
+- Rendimento -> 
+
+CABEAMENTO DE COBRE
+
+Interferência eltromagnética -> ocorre quando duas energias 
+
+Inter
+
+Diafonia ou Crosstalk ou Interferências -> somatória das interferências 
+
+	OS TIPOS DE CABOS DE COBRE
+
+	- cabo UTP (Cat5e(100mbps)) - cabo não tem blindagem 
+	- cabo STP (Cat6(16bps)) - cabo que tem blindagem para não ter interfência de sinal externo(para não virar antena) e interna(interfência eltromagnética)
+	- cabo SOTP -
+	- cabo Coaxical - tem uma blindagem mecanica, eletrica, etc... 
+
+Colisão -> 
+
+FIBRA OPTICA 
+	
+	-fibra monomodo (SM ou 5m) - núcleo pequeno, usa tecnologia laser, é bom em longas distâncias(até centenas de km) 
+	-fibra multimodo(MM) -  núcleo maior, usa tecnologia laser, com vários feixes de luz, para conectar mais de um aparelho
+
+-----------------------------------------------------------------------
+IeP
+-----------------------------------------------------------------------
+
+Enlace 
+   |
+   => Erros = Ele descarta
+   => Controle de Fluxo
+   => Aceita dados de acordo com o tipo de pacote da Camada 3 (IPV4,IPV6....) e encapsula em quadros
+   => Troca quadros entre pontos extremos de rede.
