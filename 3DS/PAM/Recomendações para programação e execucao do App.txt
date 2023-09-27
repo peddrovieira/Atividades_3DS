@@ -1,0 +1,13 @@
+Etapas para tentar usar o VS Studio sem os travamentos:
+
+- Abrir o projeto via pasta c:\Arquivos\Sua pasta
+
+- Compilar o projeto ao início da aula para verificar possíveis erros
+
+- Evitar colar o projeto em caminhos longos ou com caracteres especiais
+
+- Ativar o modo de desenvolvedor no Windows
+
+- Vamos executar o projeto apenas no final das etapas
+
+- Evitar vários abas de crhome (ladrão de memórias) abertas 

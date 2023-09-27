@@ -1,0 +1,28 @@
+
+        public async Task RegistrarUsuario()//Método para registrar um usuário     
+        {
+            try
+            {
+                Usuario u = new Usuario();
+                u.Username = Login;
+                u.PasswordString = Senha;
+
+                Usuario uRegistrado = await uService.PostRegistrarUsuarioAsync(u);
+
+                if (uRegistrado.Id != 0)
+                {
+                    string mensagem = $"Usuário Id {uRegistrado.Id} registrado com sucesso.";
+                    await Application.Current.MainPage.DisplayAlert("Informação", mensagem, "Ok");
+
+                    await Application.Current.MainPage
+                        .Navigation.PopAsync();//Remove a página da pilha de visualização
+                }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage
+                    .DisplayAlert("Informação", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
+            }
+        }
+
+        
