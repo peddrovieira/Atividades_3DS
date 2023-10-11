@@ -1,0 +1,18 @@
+8
+{
+	public async Task RemoverPersonagem(Personagem p)
+        {
+            try
+            {
+                if (await Application.Current.MainPage
+                    .DisplayAlert("Confirmação", $"Confirma a remoção de {p.Nome}?", "Sim", "Não"))
+                {
+                    await pService.DeletePersonagemAsync(p.Id);
+
+                    await Application.Current.MainPage.DisplayAlert("Mensagem",
+                        "Personagem removido com sucesso!", "Ok");
+
+                    _ = ObterPersonagem();
+                }
+            }
+}
