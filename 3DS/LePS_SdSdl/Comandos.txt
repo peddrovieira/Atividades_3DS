@@ -1,0 +1,118 @@
+
+-----------------------------------------------------------------------
+Geral
+-----------------------------------------------------------------------
+
+modo usuário = Switch>
+modo privilegiado = Switch#
+modo de configuração global = Switch(conf)#
+
+comando para alterar o nome do host [Hostname](conf)# hostname [Nome do hostname]
+comando para colocar para o nome padrão (config)# no hostname
+
+comando para boltar pro modo anterior à hierarquia = exit
+
+comando para fazer o boot do equipamento ou reiniciar para o ultimo save(limpar rastros) = reload
+
+comando para salvar o boot = # copy running-config startup-config ou copy run start
+
+comando para ver comandos que vc pode fazer = ?
+
+comando para criação de senha ao entrar no modo privilegiado = (conf)# enable secret [senha]
+
+
+SSH
+-----------------------------------------------------------------------
+Requisitos: Ter o Hostname
+	    Ter nome de dominio
+	comando => (config)# ip domain-name [nome do dominio]
+		   (config)# ip ssh version 2
+				 Gerar chave de criptografia
+	comando => (config)# crypto key generate rsa general-keys modulus 4096
+
+	Switch(conf)#ip ssh time-out 30 exit
+			|
+			=> Tempo em que vai chutar a pessoa depois dela nao mexer dentro do SSH
+
+ (config)# ip ssh authentication-retries [numero de quantidade possiveis]
+	   
+ (config)# transport input ssh 
+	|
+	=> Fecha o Telnet
+		
+(config)# exec-timeout 5 30
+	|
+	=> Ele limita o tempo que a pessoa pode ficar colocando a senha
+
+-----------------------------------------------------------------------
+
+show mac-address-table
+arp -d
+show int fa0/1
+aaa new-model
+aaa authentication [qual lugar] default group tacacs+ local
+aaa authorization exec default group tacacs+ local
+aaa accounting exec default start-stop group tacacs+
+tacacs-server host [ip do servidor] key [chave inscrita no server AAA]
+
+-----------------------------------------------------------------------
+SWITCH
+-----------------------------------------------------------------------
+
+
+
+comando para configurar o endereço de ip do switch(
+	(conf)# int vlan 1
+	(conf-if)# ip address [endereço de ip] [mascara de ip]
+	(conf-if)# no shutdown -> "subir" a porta
+)
+
+comando para configurar o acesso de telnet (
+	(conf)# line vty 0 15
+	(conf-line)# password [senha]
+	(conf-line)# login
+)
+
+comando para configurar o acesso a porta de console(
+	(conf)#line console 0
+	(conf-line)# password [senha]
+	(conf-line)# login
+)
+
+comando para botar criptografia nas senhas = (conf)# service password-encryption 
+
+comando para (conf)# banner motd $ [texto] $
+
+
+
+    
+
+SW1(config)#int range [Qual porta]-[até que porta vai fechar],[separa outras portas de range virgula]
+
+SW1(config-if-range)#shut
+
+Switchport port-security maximum 2
+switchport port-security mac-address sticky
+switchport port-security violation shutdown
+
+-----------------------------------------------------------------------
+ROTEADOR
+-----------------------------------------------------------------------
+
+
+
+security password min-lenght 
+login block-for [tempo de bloqueio do banco (em s)] attempts [quantidade de tentativa] within [Em quanto tempo as tentativas (em s)]
+Exec-timeout [Decide o tempo que fecha o prompt (em seg)]
+
+Comandos de criação de usuario:
+(config)# username [nome do usuario] [tipo de criptografia da senha] [senha do usuario]
+(config)# username privlege [numero do privilegio (0-15 sendo o 15 o melhor)]		
+	|
+	|
+	|=> para usar o username colocar local depois do comando login
+
+
+(config)# ip acess-list standard PERMIT-ADMIN
+           remark Permit only Administrative hosts
+           permit [numero do ip para ter permissao]

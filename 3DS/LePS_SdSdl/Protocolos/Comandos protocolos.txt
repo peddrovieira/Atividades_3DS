@@ -1,0 +1,52 @@
+enable
+configure terminal
+hostname R1
+int gi0/0/0
+ip address 10.0.0.1 255.255.255.0
+no shutdown
+username R1 password 12345
+tacacs-server host 10.0.0.100
+tacacs-server key 12345
+aaa new-model
+aaa authentication login default group tacacs+ local
+aaa authorization exec default group tacacs+ local
+end
+copy run start
+
+________________________________________________________________________
+
+enable
+configure terminal
+service password-encryption
+hostname R2
+int gi0/0/0
+ip address 10.0.0.2 255.255.255.0
+no shutdown
+username R2 password 12345
+radius-server host 10.0.0.100
+radius-server key 12345
+aaa new-model
+aaa authentication login default group radius local
+aaa authorization exec default group radius local
+end
+copy run start
+
+_________________________________________________________________________
+
+enable
+configure terminal
+service password-encryption
+hostname SW1
+int vlan 1
+ip address 10.0.0.2 255.255.255.0
+no shutdown
+username SW1 password 12345
+radius-server host 10.0.0.100 auth-port 1812 acct-port 1813 key 12345
+aaa new-model
+aaa authentication login default group radius local
+aaa authorization exec default group radius
+end
+copy run start
+
+
+
