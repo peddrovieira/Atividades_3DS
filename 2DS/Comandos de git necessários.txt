@@ -19,3 +19,9 @@ Os 3 comandos sagrados para subir:
 Comando para tirar um caminho de repositorio pré-existente:
 
 	git remote rm origin
+
+Adicionar uma branch
+
+	git remote add origin <caminho do repositorio>
+	git checkout -b <nome da branch>
+	git push --set-upstream origin <nome da branch>
