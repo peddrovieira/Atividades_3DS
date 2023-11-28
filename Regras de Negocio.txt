@@ -1,0 +1,84 @@
+ESCOLARIDADE
+Não passar do ID 8
+Não existir ID 0
+
+CONHECIMENTO
+nomeConhecimento não passar de 30 letras
+escolher apenas da lista
+
+IDIOMAS
+nomeIdioma não passar de 15 letras
+escolher apenas da lista
+
+EMPRESA
+Cnpj != 0000000000
+Cnpj != 9999999999
+idPorte apenas os da lista
+Verificar se n possui idEmpresa existente
+
+ENDERECOEMPRESA
+Verificar se o idEmpresa existe
+cep != 00000000
+cep != 99999999
+
+BENEFICIO
+escolher apenas da lista
+
+VAGAS
+idEscolaridade,idSituacaoVaga,idEmpresa tem que ser existentes
+cargaHoraria !>44/semanais
+cargaHoraria !<30/semanais
+percAderencia MAX 75,00
+
+BENEFICIOVAGA
+Verificar id Existentes
+
+VAGACONHECIMENTO
+Verificar id Existentes
+
+VAGAIDIOMA
+Verificar id Existentes
+
+CANDIDATO
+dataNascimento >= 16
+?
+?
+
+VAGASCANDIDATOS
+idVaga e idCurriculo existente
+vtEmpresa e vtCandidato começa como N
+percAderencia começa como 0
+duCurriculo !> data atual
+
+CARREIRAPROFISSIONAL
+sqCarreiraProfissional != 0 && >(MAX)
+idCurriculo tem que ser existente
+
+CURRICULOCONHECIMENTO
+ids Existentes
+
+CURRICULOIDIOMAS
+ids Existentes
+
+CURSOS
+nomeCurso diferente entre a lista inseridas
+
+ENDERECOEMPRESA
+Verificar se o idCandidato existe
+cep != 00000000
+cep != 99999999
+
+FORMACAOACADEMICA
+diCurso < dataAtual
+dfCurso > diCurso
+
+
+
+
+
+
+
+
+
+
+
